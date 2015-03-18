@@ -1,0 +1,9 @@
+---
+# file: tasks/section-01.yml
+
+- name: 1.1 Install Updates, Patches and Additional Security Software (Not Scored)
+  debug: msg="1.1 Install Updates, Patches and Additional Security Software (Not Scored)"
+  tags:
+    - section1.1
+
+# vim: set sw=2 ts=2:
