@@ -1,0 +1,10 @@
+---
+# file: cis.yml
+
+- hosts: all
+  sudo: yes
+  user: provisioner
+  roles:
+    - cis
+
+# vim: set sw=2 ts=2:
