@@ -1,0 +1,82 @@
+---
+# file: tasks/section-02-level-1.yml
+
+- name: 2.1 Create Separate Partition for /tmp (Scored)
+  debug: msg="*** Manually create separate partition for /tmp"
+  tags:
+    - scored
+    - section2.1
+
+- name: 2.2 - 2.4 Set nodev,nosuid,noexec option for /tmp Partition (Scored)
+  mount: name="/tmp" src={{ item.device }} fstype={{ item.fstype }} opts="nodev,nosuid,noexec" state=mounted
+  when: item.mount == "/tmp" and ansible_mounts is defined
+  with_items: ansible_mounts
+  tags:
+    - scored
+    - section2.2
+    - section2.3
+    - section2.4
+
+- name: 2.5 Create Separate Partition for /var (Scored)
+  debug: msg="*** Manually create separate partition for /var"
+  tags:
+    - scored
+    - section2.5
+
+- name: 2.6 Bind Mount the /var/tmp directory to /tmp (Scored)
+  mount: name="/var/tmp" src="/tmp" fstype="none" opts="bind" state=mounted
+#  when: item.mount == "/tmp" and ansible_mounts is defined
+#  with_items: ansible_mounts
+  tags:
+    - scored
+    - section2.6
+
+- name: 2.7 Create Separate Partition for /var/log (Scored)
+  debug: msg="*** Manually create a seprate partition for /var/log"
+  tags:
+    - scored
+    - section2.7
+
+- name: 2.8 Create Separate Partition for /var/log/audit (Scored)
+  debug: msg="*** Manually create a seprate partition for /var/log/audit"
+  tags:
+    - scored
+    - section2.8
+
+- name: 2.9 Create Separate Partition for /home (Scored)
+  debug: msg="*** Manually create a seprate partition for /home"
+  tags:
+    - scored
+    - section2.9
+
+- name: 2.10 Add nodev Option to /home (Scored)
+  mount: name="/home" src={{ item.device }} fstype={{ item.fstype }} opts="nodev" state=mounted
+  when: item.mount == "/home" and ansible_mounts is defined
+  with_items: ansible_mounts
+  tags:
+    - scored
+    - section2.10
+
+- name: 2.11 - 2.13 Add nodev,noexec,nosuid Option to Removable Media Partitions (Not Scored)
+  debug: msg="*** Irrelevant"
+  tags:
+    - notscored
+    - section2.11
+    - section2.12
+    - section2.13
+
+- name: 2.14 - 2.16 Add nodev Option to /run/shm Partition (Scored)
+  mount: name="/run/shm" src="none" fstype="tmpfs" opts="nodev,noexec,nosuid" state=mounted
+  tags:
+    - scored
+    - section2.14
+    - section2.15
+    - section2.16
+
+- name: 2.17 Set Sticky Bit on All World-Writable Directories (Scored)
+  debug: msg="*** Can be destructive -- see notes"
+  tags:
+    - scored
+    - section2.17
+
+# vim: set sw=2 ts=2:
