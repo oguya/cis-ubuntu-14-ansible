@@ -47,7 +47,7 @@
   replace: dest=/etc/init/autofs.conf replace="#start on runlevel [2345]" regexp="^start on runlevel \[2345\]$"
   ignore_errors: yes
   tags:
-    - notscored
+    - scored
     - section2.25
 
 # vim: set sw=2 ts=2:
