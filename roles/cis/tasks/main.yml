@@ -1,5 +1,7 @@
 ---
 # file: tasks/main.yml
 
+- include: section-01.yml
+  tags: section1
 
 # vim: set sw=2 ts=2:
