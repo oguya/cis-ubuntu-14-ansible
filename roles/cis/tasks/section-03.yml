@@ -1,0 +1,8 @@
+---
+# file: tasks/section-03.yml
+# Section 3: Secure Boot Settings
+
+- include: section-03-level-1.yml
+  tags: section-03-level-1
+
+# vim: set sw=2 ts=2:
