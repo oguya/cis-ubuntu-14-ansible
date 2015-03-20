@@ -7,4 +7,7 @@
 - include: section-02.yml
   tags: section2
 
+- include: section-03.yml
+  tags: section3
+
 # vim: set sw=2 ts=2:
