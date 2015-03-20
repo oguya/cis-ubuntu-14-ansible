@@ -1,0 +1,32 @@
+---
+# file: tasks/section-03-level-1.yml
+
+- name: Get absolute path to boot loader config file
+  stat: path=/boot/grub/grub.cfg follow=True
+  register: grub_path
+  tags:
+    - scored
+    - section3.1
+    - section3.2
+
+- name: 3.1 - 3.2 Set User/Group Owner on bootloader config (Scored)
+  file: path=/boot/grub/grub.cfg follow=yes owner=root group=root mode=0400
+  when: grub_path is defined and grub_path.stat.exists
+  tags:
+    - scored
+    - section3.1
+    - section3.2
+
+- name: 3.3 Set Boot Loader Password (Scored)
+  debug: msg="*** Can be destructive for systems in production. Evaluate your environment first!"
+  tags:
+    - scored
+    - section3.3
+
+- name: 3.4 Require Authentication for Single-User Mode (Scored)
+  debug: msg="*** Manually set the password for root user"
+  tags:
+    - scored
+    - section3.4
+
+# vim: set sw=2 ts=2:
