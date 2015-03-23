@@ -1,0 +1,44 @@
+---
+# file: tasks/section-04-level-1.yml
+
+- name: 4.1 Restrict Core Dumps (Scored) - using pam limits
+  lineinfile: dest=/etc/security/limits.conf line="* hard core 0" state=present
+  tags:
+    - scored
+    - section4.1
+
+- name: 4.1 Restrict Core Dumps (Scored) - using sysctl
+  sysctl: name=fs.suid_dumpable value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  tags:
+    - scored
+    - section4.1
+
+- name: 4.2 Enable XD/NX Support on 32-bit x86 Systems (Not Scored)
+  debug: msg="*** On 32 bit systems install a kernel with PAE support, no installation is required on 64 bit systems"
+  tags:
+    - notscored
+    - section4.2
+
+- name: 4.3 Enable Randomized Virtual Memory Region Placement (Scored)
+  sysctl: name=kernel.randomize_va_space value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  tags:
+    - scored
+    - section4.3
+
+- name: 4.4 Disable Prelink (Scored)
+  apt: name=prelink purge=yes state=absent
+  tags:
+    - scored
+    - section4.4
+
+- name: 4.5 Activate AppArmor (Scored)
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - apparmor
+    - apparmor-utils
+  notify: enforce apparmor profiles
+  tags:
+    - scored
+    - section4.5
+
+# vim: set sw=2 ts=2:
