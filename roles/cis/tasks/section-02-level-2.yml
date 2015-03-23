@@ -44,7 +44,15 @@
     - section2.24
 
 - name: 2.25 Disable Automounting (Scored)
-  replace: dest=/etc/init/autofs.conf replace="#start on runlevel [2345]" regexp="^start on runlevel \[2345\]$"
+  stat: path=/etc/init/autofs.conf follow=True
+  register: autofs_path
+  tags:
+    - scored
+    - section2.25
+
+- name: 2.25 Disable Automounting (Scored)
+  service: name=autofs state=stopped enabled=no
+  when: autofs_path is defined and autofs_path.stat.exists
   ignore_errors: yes
   tags:
     - scored
