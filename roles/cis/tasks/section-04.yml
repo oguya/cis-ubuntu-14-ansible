@@ -1,5 +1,5 @@
 ---
-# file: tasks/section-03.yml
+# file: tasks/section-04.yml
 # Section 4: Additional Process Hardening
 
 - include: section-04-level-1.yml
