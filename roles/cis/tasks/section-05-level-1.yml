@@ -1,0 +1,142 @@
+---
+# file: tasks/section-05-level-1.yml
+
+- name: 5.1.1 Ensure NIS(Network Information Services) is not installed (Scored)
+  apt: name=nis purge=yes state=absent
+  tags:
+    - scored
+    - section5.1.1
+
+- name: 5.1.2 - 5.2 Check if /etc/inetd.conf exists
+  stat: path=/etc/inetd.conf follow=True
+  register: inetd_conf_path
+  tags:
+    - scored
+    - section5.1.2
+    - section5.1.4
+    - section5.1.6
+    - section5.1.7
+    - section5.1.8
+    - section5.2
+    - section5.3
+    - section5.4
+    - section5.5
+    - section5.6
+
+- name: 5.1.2 Ensure rsh server is not enabled (Scored)
+  replace: replace={{ item.replace }} regexp={{ item.regexp }} dest=/etc/inetd.conf
+  with_items:
+    - { regexp: "^shell", replace: "#shell" }
+    - { regexp: "^login", replace: "#login" }
+    - { regexp: "^exec", replace: "#exec" }
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  tags:
+    - scored
+    - section5.1.2
+
+- name: 5.1.3 Ensure rsh client is not installed (Scored)
+  apt: name={{ item }} purge=yes state=absent
+  with_items:
+    - rsh-client
+    - rsh-reload-client
+  tags:
+    - scored
+    - section5.1.3
+
+- name: 5.1.4 Ensure talk server is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^talk", replace: "#talk" }
+    - { regexp: "^ntalk", replace: "#ntalk" }
+  tags:
+    - scored
+    - section5.1.4
+
+- name: 5.1.5 Ensure talk client is not installed (Scored)
+  apt: name={{ item }} purge=yes state=absent
+  with_items:
+    - talk
+    - ntalk
+  tags:
+    - scored
+    - section5.1.5
+
+- name: 5.1.6 Ensure telnet server is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  with_items:
+    - { regexp: "^telnet", replace: "#telnet" }
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  tags:
+    - scored
+    - section5.1.6
+
+- name: 5.1.7 Ensure tftp-server is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^tftp", replace: "#tftp" }
+  tags:
+    - scored
+    - section5.1.7
+
+- name: 5.1.8 Ensure xinetd is not enabled (Scored)
+  stat: path=/etc/init/xinetd.conf follow=True
+  register: xinetd_init_path
+  tags:
+    - scored
+    - section5.1.8
+
+- name: 5.1.8 Ensure xinetd is not enabled (Scored)
+  service: name=xinetd state=stopped enabled=no
+  when: xinetd_init_path is defined and xinetd_init_path.stat.exists
+  tags:
+    - scored
+    - section5.1.8
+
+- name: 5.2 Ensure chargen is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^chargen", replace: "#chargen" }
+  tags:
+    - scored
+    - section5.2
+
+- name: 5.3 Ensure daytime is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^daytime", replace: "#daytime" }
+  tags:
+    - scored
+    - section5.3
+
+- name: 5.4 Ensure echo is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^echo", replace: "#echo" }
+  tags:
+    - scored
+    - section5.4
+
+- name: 5.5 Ensure discard is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^discard", replace: "#discard" }
+  tags:
+    - scored
+    - section5.5
+
+- name: 5.6 Ensure time is not enabled (Scored)
+  replace: regexp={{ item.regexp }} replace={{ item.replace }} dest=/etc/inetd.conf
+  when: inetd_conf_path is defined and inetd_conf_path.stat.exists
+  with_items:
+    - { regexp: "^time", replace: "#time" }
+  tags:
+    - scored
+    - section5.6
+
+# vim: set sw=2 ts=2:
