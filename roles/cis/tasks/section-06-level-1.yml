@@ -1,4 +1,10 @@
 ---
 # file: tasks/section-06-level-1.yml
 
+- name: 6.1 Ensure the X Window system is not installed (Scored)
+  apt: name="xserver-xorg-core*" purge=yes state=absent
+  tags:
+    - scored
+    - section6.1
+
 # vim: set sw=2 ts=2:
