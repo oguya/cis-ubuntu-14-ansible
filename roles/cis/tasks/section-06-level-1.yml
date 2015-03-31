@@ -7,4 +7,60 @@
     - scored
     - section6.1
 
+- name: 6.2 Ensure Avahi Server is not enabled (Scored)
+  stat: path=/etc/init/avahi-daemon.conf follow=True
+  register: avahi_init_path
+  tags:
+    - scored
+    - section6.2
+
+- name: 6.2 Ensure Avahi Server is not enabled (Scored)
+  service: name=avahi-daemon state=stopped enabled=no
+  when: avahi_init_path is defined and avahi_init_path.stat.exists
+  tags:
+    - scored
+    - section6.2
+
+- name: 6.3 Ensure print server is not enabled (Not Scored)
+  stat: path=/etc/init/cups.conf follow=True
+  register: cups_init_path
+  tags:
+    - scored
+    - section6.3
+
+- name: 6.3 Ensure print server is not enabled (Not Scored)
+  service: name=cups state=stopped enabled=no
+  when: cups_init_path is defined and cups_init_path.stat.exists
+  tags:
+    - scored
+    - section6.3
+
+- name: 6.4 Ensure DHCP Server is not enabled (Scored)
+  stat: path=/etc/init/isc-dhcp-server.conf follow=True
+  register: dhcp_init_path
+  tags:
+    - scored
+    - section6.4
+
+- name: 6.4 Ensure DHCP Server is not enabled (Scored)
+  service: name=isc-dhcp-server state=stopped enabled=no
+  when: dhcp_init_path is defined and dhcp_init_path.stat.exists
+  tags:
+    - scored
+    - section6.4
+
+- name: 6.4 Ensure DHCP Server is not enabled (Scored)
+  stat: path=/etc/init/isc-dhcp-server6.conf follow=True
+  register: dhcp6_init_path
+  tags:
+    - scored
+    - section6.4
+
+- name: 6.4 Ensure DHCP Server is not enabled (Scored)
+  service: name=isc-dhcp-server6 state=stopped enabled=no
+  when: dhcp6_init_path is defined and dhcp6_init_path.stat.exists
+  tags:
+    - scored
+    - section6.4
+
 # vim: set sw=2 ts=2:
