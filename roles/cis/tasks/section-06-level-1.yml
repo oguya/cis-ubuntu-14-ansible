@@ -63,4 +63,10 @@
     - scored
     - section6.4
 
+- name: 6.5 Configure Network Time Protocol (NTP) (Scored)
+  apt: name=ntp update_cache=yes state=installed
+  tags:
+    - scored
+    - section6.5
+
 # vim: set sw=2 ts=2:
