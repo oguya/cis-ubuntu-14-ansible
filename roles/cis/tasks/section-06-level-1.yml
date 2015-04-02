@@ -25,14 +25,14 @@
   stat: path=/etc/init/cups.conf follow=True
   register: cups_init_path
   tags:
-    - scored
+    - notscored
     - section6.3
 
 - name: 6.3 Ensure print server is not enabled (Not Scored)
   service: name=cups state=stopped enabled=no
   when: cups_init_path is defined and cups_init_path.stat.exists
   tags:
-    - scored
+    - notscored
     - section6.3
 
 - name: 6.4 Ensure DHCP Server is not enabled (Scored)
