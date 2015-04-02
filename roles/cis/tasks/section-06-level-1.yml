@@ -146,4 +146,65 @@
     - notscored
     - section6.10
 
+- name: 6.11 Ensure IMAP and POP server is not enabled (Not Scored)
+  stat: path=/etc/init/dovecot.conf follow=True
+  register: dovecot_init_path
+  tags:
+    - notscored
+    - section6.11
+
+- name: 6.11 Ensure IMAP and POP server is not enabled (Not Scored)
+  service: name=dovecot state=stopped enabled=no
+  tags:
+    - notscored
+    - section6.11
+
+- name: 6.12 Ensure Samba is not enabled (Not Scored)
+  stat: path=/etc/init/smbd.conf follow=True
+  register: smbd_init_path
+  tags:
+    - notscored
+    - section6.12
+
+- name: 6.12 Ensure Samba is not enabled (Not Scored)
+  service: name=smbd state=stopped enabled=no
+  when: smbd_init_path is defined and smbd_init_path.stat.exists
+  tags:
+    - notscored
+    - section6.12
+
+- name: 6.13 Ensure HTTP Proxy Server is not enabled (Not Scored)
+  stat: path=/etc/init/squid3.conf follow=True
+  register: squid3_init_path
+  tags:
+    - notscored
+    - section6.13
+
+- name: 6.13 Ensure HTTP Proxy Server is not enabled (Not Scored)
+  service: name=squid3 state=stopped enabled=no
+  tags:
+    - notscored
+    - section6.13
+
+- name: 6.14 Ensure SNMP Server is not enabled (Not Scored)
+  stat: path=/etc/init/snmpd.conf follow=True
+  register: snmpd_init_path
+  tags:
+    - notscored
+    - section6.14
+
+- name: 6.14 Ensure SNMP Server is not enabled (Not Scored)
+  service: name=snmpd state=stopped enabled=no
+  when: snmpd_init_path is defined and snmpd_init_path.stat.exists
+  tags:
+    - notscored
+    - section6.14
+
+- name: 6.15 Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  stat: path=/etc/postfix/main.cf follow=True
+  register: postfix_config
+  tags:
+    - scored
+    - section6.15
+
 # vim: set sw=2 ts=2:
