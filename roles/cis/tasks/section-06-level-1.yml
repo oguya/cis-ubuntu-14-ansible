@@ -69,4 +69,10 @@
     - scored
     - section6.5
 
+- name: 6.5 Configure Network Time Protocol (NTP) (Scored)
+  service: name=ntp state=started enabled=yes
+  tags:
+    - scored
+    - section6.5
+
 # vim: set sw=2 ts=2:
