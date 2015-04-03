@@ -1,5 +1,7 @@
 ---
 # file: handlers/main.yml
 
+- name: restart postfix
+  service: name=postfix state=restated enabled=yes
 
 # vim: set sw=2 ts=2:
