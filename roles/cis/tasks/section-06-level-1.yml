@@ -207,4 +207,33 @@
     - scored
     - section6.15
 
+- name: 6.15 Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  lineinfile: regexp="^inet_interfaces" line="inet_interfaces = localhost" dest=/etc/postfix/main.cf state=present
+  when: postfix_config is defined and postfix_config.stat.exists
+  notify:
+    - restart postfix
+  tags:
+    - scored
+    - section6.15
+
+- name: 6.16 Ensure rsync service is not enabled (Scored)
+  stat: path=/etc/default/rsync follow=True
+  register: rsync_config
+  tags:
+    - scored
+    - section6.16
+
+- name: 6.16 Ensure rsync service is not enabled (Scored)
+  lineinfile: regexp="^RSYNC_ENABLE" line="RSYNC_ENABLE=false" dest=/etc/default/rsync state=present
+  when: rsync_config is defined and rsync_config.stat.exists
+  tags:
+    - scored
+    - section6.16
+
+- name: 6.17 Ensure Biosdevname is not enabled (Scored)
+  apt: name=biosdevname purge=yes state=absent
+  tags:
+    - scored
+    - section6.17
+
 # vim: set sw=2 ts=2:
