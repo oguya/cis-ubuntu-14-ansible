@@ -1,0 +1,12 @@
+---
+# file: tasks/section-07-level-1.yml
+
+- name: 7.1.1 Disable IP Forwarding (Scored)
+  sysctl: name=net.ipv4.ip_forward value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  tags:
+    - scored
+    - section7.1
+    - section7.1.1
+
+
+# vim: set sw=2 ts=2:
