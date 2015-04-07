@@ -7,10 +7,8 @@
     - section7.1
 
 - name: 7.1.1 Disable IP Forwarding (Scored)
-  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
-  with_items:
-    - { name: "net.ipv4.ip_forward", value: 0 }
-    - { name: "net.ipv4.route.flush", value: 1 }
+  sysctl: name=net.ipv4.ip_forward value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  notify: flush routing cache
   tags:
     - scored
     - section7.1
@@ -21,6 +19,7 @@
   with_items:
     - net.ipv4.conf.all.send_redirects
     - net.ipv4.conf.default.send_redirects
+  notify: flush routing cache
   tags:
     - scored
     - section7.1
@@ -36,6 +35,7 @@
   with_items:
     - net.ipv4.conf.all.accept_source_route
     - net.ipv4. conf.default.accept_source_route
+  notify: flush routing cache
   tags:
     - scored
     - section7.1
