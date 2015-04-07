@@ -7,7 +7,10 @@
     - section7.1
 
 - name: 7.1.1 Disable IP Forwarding (Scored)
-  sysctl: name=net.ipv4.ip_forward value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - { name: "net.ipv4.ip_forward", value: 0 }
+    - { name: "net.ipv4.route.flush", value: 1 }
   tags:
     - scored
     - section7.1
