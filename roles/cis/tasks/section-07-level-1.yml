@@ -16,5 +16,29 @@
     - section7.1
     - section7.1.1
 
+- name: 7.1.2 Disable Send Packet Redirects (Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.send_redirects
+    - net.ipv4.conf.default.send_redirects
+  tags:
+    - scored
+    - section7.1
+    - section7.1.2
+
+- name: 7.2 Modify Network Parameters (Host and Router)
+  debug: msg="*** A system acts as a router if it has at least two interfaces and is configured to perform routing functions"
+  tags:
+    - section7.2
+
+- name: 7.2.1 Disable Source Routed Packet Acceptance (Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.accept_source_route
+    - net.ipv4. conf.default.accept_source_route
+  tags:
+    - scored
+    - section7.1
+    - section7.1.2
 
 # vim: set sw=2 ts=2:
