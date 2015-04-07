@@ -5,6 +5,6 @@
   sudo: yes
   user: provisioner
   roles:
-    - cis
+    - { role: cis, when: ansible_distribution=="Ubuntu" and ansible_distribution_version=="14.04" }
 
 # vim: set sw=2 ts=2:
