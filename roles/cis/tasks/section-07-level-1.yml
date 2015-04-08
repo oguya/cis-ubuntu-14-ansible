@@ -41,4 +41,108 @@
     - section7.2
     - section7.2.1
 
+- name: 7.2.2 Disable ICMP Redirect Acceptance (Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.accept_redirects
+    - net.ipv4.conf.default.accept_redirects
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.2
+
+- name: 7.2.3 Disable Secure ICMP Redirect Acceptance (Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.secure_redirects
+    - net.ipv4.conf.default.secure_redirects
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.3
+
+- name: 7.2.4 Log Suspicious Packets (Scored)
+  sysctl: name={{ item }} value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.log_martians
+    - net.ipv4.conf.default.log_martians
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.4
+
+- name: 7.2.5 Enable Ignore Broadcast Requests (Scored)
+  sysctl: name=net.ipv4.icmp_echo_ignore_broadcasts value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.5
+
+- name: 7.2.6 Enable Bad Error Message Protection (Scored)
+  sysctl: name=net.ipv4.icmp_ignore_bogus_error_responses value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.6
+
+- name: 7.2.7 Enable RFC-recommended Source Route Validation (Scored)
+  sysctl: name={{ item }} value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv4.conf.all.rp_filter
+    - net.ipv4.conf.default.rp_filter
+  notify: flush routing cache
+  tags:
+    - scored
+    - section7.2
+    - section7.2.7
+
+- name: 7.2.8 Enable TCP SYN Cookies (Scored)
+  sysctl: name=net.ipv4.tcp_syncookies value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  notify: flush routing cache
+tags:
+  -scored
+  - section7.2
+  - section7.2.8
+
+- name: 7.3 Configure IPv6
+  debug: msg="*** If IPv6 is to be used, follow this section of the benchmark to configure IPv6, otherwise disable IPv6"
+  tags:
+    - section7.3
+
+- name: 7.3.1 Disable IPv6 Router Advertisements (Not Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv6.conf.all.accept_ra
+    - net.ipv6.conf.default.accept_ra
+  tags:
+    - notscored
+    - section7.3
+    - section7.3.1
+
+- name: 7.3.2 Disable IPv6 Redirect Acceptance (Not Scored)
+  sysctl: name={{ item }} value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv6.conf.all.accept_redirects
+    - net.ipv6.conf.default.accept_redirects
+  tags:
+    - notscored
+    - section7.3
+    - section7.3.2
+
+- name: 7.3.3 Disable IPv6 (Not Scored)
+  sysctl: name={{ item }} value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  with_items:
+    - net.ipv6.conf.all.disable_ipv6
+    - net.ipv6.conf.default.disable_ipv6
+    - net.ipv6.conf.lo.disable_ipv6
+  tags:
+    - notscored
+    - section7.3
+    - section7.3.3
+
 # vim: set sw=2 ts=2:
