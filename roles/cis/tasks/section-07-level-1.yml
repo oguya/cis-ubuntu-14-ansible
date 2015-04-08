@@ -145,4 +145,43 @@ tags:
     - section7.3
     - section7.3.3
 
+- name: 7.4 Install TCP Wrappers
+  debug: msg="***  TCP Wrappers add an additional layer of protection by defining which hosts are or are not allowed to connect to 'wrapped' network services"
+  tags:
+    - section7.4
+
+- name: 7.4.1 Install TCP Wrappers (Scored)
+  apt: name=tcpd update_cache=yes  state=installed
+  tags:
+    - scored
+    - section7.4
+    - section7.4.1
+
+- name: 7.4.2 Create /etc/hosts.allow (Not Scored)
+  file: path=/etc/hosts.allow state=touch
+  tags:
+    - notscored
+    - section7.4
+    - section7.4.2
+
+- name: 7.4.3 Verify Permissions on /etc/hosts.allow (Scored)
+  file: path=/etc/hosts.allow owner=root group=root mode=0644
+  tags:
+    - scored
+    - section7.4.3
+
+- name: 7.4.4 Create /etc/hosts.deny (Not Scored)
+  file: path=/etc/hosts.deny state=touch
+  tags:
+    - notscored
+    - section7.4
+    - section7.4.4
+
+- name: 7.4.5 Verify Permissions on /etc/hosts.deny (Scored)
+  file: path=/etc/hosts.deny owner=root group=root mode=0644
+  tags:
+    - scored
+    - section7.4
+    - section7.4.5
+
 # vim: set sw=2 ts=2:
