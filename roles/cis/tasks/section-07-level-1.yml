@@ -247,4 +247,10 @@ tags:
     - notscored
     - section7.6
 
+- 7.7 Ensure Firewall is active (Scored)
+  service: name=ufw state=started enabled=yes
+  tags:
+    - scored
+    - section7.7
+
 # vim: set sw=2 ts=2:
