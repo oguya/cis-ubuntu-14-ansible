@@ -7,4 +7,7 @@
 - name: flush routing cache
   shell: echo 1 > /proc/sys/net/ipv4/route/flush
 
+- name: flush ipv6 routing cache
+  shell: echo 1 > /proc/sys/net/ipv6/route/flush
+
 # vim: set sw=2 ts=2:
