@@ -240,4 +240,11 @@ tags:
     - section7.5
     - section7.5.4
 
+- name: 7.6 Deactivate Wireless Interfaces (Not Scored)
+  command: nmcli nm wifi off
+  ignore_errors: yes
+  tags:
+    - notscored
+    - section7.6
+
 # vim: set sw=2 ts=2:
