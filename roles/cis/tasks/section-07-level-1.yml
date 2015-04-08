@@ -38,7 +38,7 @@
   notify: flush routing cache
   tags:
     - scored
-    - section7.1
-    - section7.1.2
+    - section7.2
+    - section7.2.1
 
 # vim: set sw=2 ts=2:
