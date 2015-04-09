@@ -31,4 +31,15 @@
     - section8.1.1
     - section8.1.1.3
 
+- name: 8.1.2 Install and Enable auditd Service (Scored)
+  apt: name=auditd update_cache=yes state=installed
+  tags:
+    - scored
+    - section8.1.2
+
+- name: 8.1.2 Install and Enable auditd Service (Scored)
+  service: name=auditd state=started enabled=yes
+  tags:
+    - scored
+    - section8.1.2
 # vim: set sw=2 ts=2:
