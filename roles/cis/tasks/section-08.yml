@@ -1,0 +1,8 @@
+---
+# file: tasks/section-08.yml
+# Section 8: Logging and Auditing
+
+- include: section-08-level-1.yml
+  tags: section-08-level-1
+
+# vim: set sw=2 ts=2:
