@@ -10,4 +10,7 @@
 - name: flush ipv6 routing cache
   shell: echo 1 > /proc/sys/net/ipv6/route/flush
 
+- name: update grub
+  command: /usr/sbin/update-grub
+
 # vim: set sw=2 ts=2:
