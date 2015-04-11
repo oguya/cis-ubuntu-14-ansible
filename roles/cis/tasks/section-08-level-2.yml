@@ -213,4 +213,20 @@
     - scored
     - section8.1.11
 
+- name: 8.1.12 Collect Use of Privileged Commands (Scored)
+  shell: /bin/find {/usr/local/sbin,/usr/local/bin,/sbin,/bin,/usr/sbin,/usr/bin} -xdev \( -perm -4000 -o -perm -2000 \) -type f | awk '{print "-a always,exit -F path=" $1 " -F perm=x -F auid>=500 -F auid!=4294967295 -k privileged" }'
+  register: privileged_programs
+  tags:
+    - scored
+    - section8.1.12
+
+- name: 8.1.12 Collect Use of Privileged Commands (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items: privileged_programs.stdout_lines
+  when: privileged_programs is defined
+  tags:
+    - scored
+    - section8.1.12
+
+
 # vim: set sw=2 ts=2:
