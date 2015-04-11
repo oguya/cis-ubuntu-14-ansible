@@ -232,5 +232,100 @@
     - scored
     - section8.1.12
 
+- name: 8.1.13 Collect Successful File System Mounts (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k mounts"
+    - "-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k mounts"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.13
+
+- name: 8.1.13 Collect Successful File System Mounts (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k mounts"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.13
+
+- name: 8.1.14 Collect File Deletion Events by User (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k delete"
+    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k delete"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.14
+
+- name: 8.1.14 Collect File Deletion Events by User (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k delete"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.14
+
+- name: 8.1.15 Collect Changes to System Administration Scope (sudoers) (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /etc/sudoers -p wa -k scope"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.15
+
+- name: 8.1.16 Collect System Administrator Actions (sudolog) (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /var/log/sudo.log -p wa -k actions"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.16
+
+- name: 8.1.17 Collect Kernel Module Loading and Unloading (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /sbin/insmod -p x -k modules"
+    - "-w /sbin/rmmod -p x -k modules"
+    - "-w /sbin/modprobe -p x -k modules"
+    - "-a always,exit -F arch=b64 -S init_module -S delete_module -k modules"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.17
+
+- name: 8.1.17 Collect Kernel Module Loading and Unloading (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /sbin/insmod -p x -k modules"
+    - "-w /sbin/rmmod -p x -k modules"
+    - "-w /sbin/modprobe -p x -k modules"
+    - "-a always,exit -F arch=b32 -S init_module -S delete_module -k modules"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.17
+
+- name: 8.1.18 Make the Audit Configuration Immutable (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line="-e 2" insertafter=EOF state=present
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.18
 
 # vim: set sw=2 ts=2:
