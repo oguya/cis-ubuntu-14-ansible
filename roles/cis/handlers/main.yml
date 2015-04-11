@@ -16,4 +16,7 @@
 - name: restart auditd
   service: name=auditd state=restarted
 
+- name: restart rsyslog
+  service: name=rsyslog state=restarted
+
 # vim: set sw=2 ts=2:
