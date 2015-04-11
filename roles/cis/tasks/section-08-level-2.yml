@@ -51,4 +51,72 @@
     - scored
     - section8.1.3
 
+- name: 8.1.4 Record Events That Modify Date and Time Information (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change"
+    - "-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change"
+    - "-a always,exit -F arch=b64 -S clock_settime -k time-change"
+    - "-a always,exit -F arch=b32 -S clock_settime -k time-change"
+    - "-w /etc/localtime -p wa -k time-change"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.4
+
+- name: 8.1.4 Record Events That Modify Date and Time Information (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change"
+    - "-a always,exit -F arch=b32 -S clock_settime -k time-change"
+    - "-w /etc/localtime -p wa -k time-change"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.4
+
+- name: 8.1.5 Record Events That Modify User/Group Information (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /etc/group -p wa -k identity"
+    - "w /etc/passwd -p wa -k identity"
+    - "-w /etc/gshadow -p wa -k identity"
+    - "-w /etc/shadow -p wa -k identity"
+    - "-w /etc/security/opasswd -p wa -k identity"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.5
+
+- name: 8.1.6 Record Events That Modify the System's Network Environment(Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a exit,always -F arch=b64 -S sethostname -S setdomainname -k system-locale"
+    - "-a exit,always -F arch=b32 -S sethostname -S setdomainname -k system-locale"
+    - "-w /etc/issue -p wa -k system-locale"
+    - "-w /etc/issue.net -p wa -k system-locale"
+    - "-w /etc/hosts -p wa -k system-locale"
+    - "-w /etc/network -p wa -k system-locale"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.6
+
+- name: 8.1.6 Record Events That Modify the System's Network Environment(Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a exit,always -F arch=b32 -S sethostname -S setdomainname -k system-locale"
+    - "-w /etc/issue -p wa -k system-locale"
+    - "-w /etc/issue.net -p wa -k system-locale"
+    - "-w /etc/hosts -p wa -k system-locale"
+    - "-w /etc/network -p wa -k system-locale"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.6
+
 # vim: set sw=2 ts=2:
