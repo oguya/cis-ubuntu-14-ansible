@@ -8,6 +8,7 @@
 
 - name: 8.1.1.1 Configure Audit Log Storage Size (Not Scored)
   lineinfile: dest="/etc/audit/auditd.conf" regex="^max_log_file" line="max_log_file = 10"
+  notify: restart auditd
   tags:
     - notscored
     - section8.1.1
@@ -19,13 +20,15 @@
     - { regex: "^space_left_action", line: "space_left_action = email" }
     - { regex: "^action_mail_acct", line: "action_mail_acct = root" }
     - { regex: "^admin_space_left_action", line: "admin_space_left_action = halt" }
+  notify: restart auditd
   tags:
     - notscored
     - section8.1.1
     - section8.1.1.2
 
 - name: 8.1.1.3 Keep All Auditing Information (Scored)
-  lineinfile: dest="/etc/audit/auditd.conf" regex="^max_log_file_action" line="max_log_file_action = keep_logs"
+  lineinfile: dest="/etc/audit/auditd.conf" regex="^max_log_file_action" line="max_log_file_action = keep_logs" state=present
+  notify: restart auditd
   tags:
     - scored
     - section8.1.1
@@ -209,6 +212,7 @@
     - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \\"
     - "-F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
   when: ansible_machine == "i686"
+  notify: restart auditd
   tags:
     - scored
     - section8.1.11
