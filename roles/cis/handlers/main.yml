@@ -13,4 +13,7 @@
 - name: update grub
   command: /usr/sbin/update-grub
 
+- name: restart auditd
+  service: name=auditd state=restarted
+
 # vim: set sw=2 ts=2:
