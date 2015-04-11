@@ -119,4 +119,69 @@
     - scored
     - section8.1.6
 
+- name: 8.1.7 Record Events That Modify the System's Mandatory Access Controls (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line="-w /etc/selinux/ -p wa -k MAC-policy" insertafter=EOF state=present
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.7
+
+- name: 8.1.8 Collect Login and Logout Events (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /var/log/faillog -p wa -k logins"
+    - "-w /var/log/lastlog -p wa -k logins"
+    - "-w /var/log/tallylog -p wa -k logins"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.8
+
+- name: 8.1.9 Collect Session Initiation Information (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-w /var/run/utmp -p wa -k session"
+    - "-w /var/log/wtmp -p wa -k session"
+    - "-w /var/log/btmp -p wa -k session"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.9
+
+- name: 8.1.10 Collect Discretionary Access Control Permission Modification Events (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
+    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
+    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.10
+
+- name: 8.1.10 Collect Discretionary Access Control Permission Modification Events (Scored)
+  lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
+  with_items:
+    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
+    - "-F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
+    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+  when: ansible_machine == "i686"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.10
+
 # vim: set sw=2 ts=2:
