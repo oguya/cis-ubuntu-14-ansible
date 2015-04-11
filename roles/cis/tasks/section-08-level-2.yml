@@ -228,6 +228,7 @@
   lineinfile: dest=/etc/audit/audit.rules line={{ item }} insertafter=EOF state=present
   with_items: privileged_programs.stdout_lines
   when: privileged_programs is defined
+  notify: restart auditd
   tags:
     - scored
     - section8.1.12
