@@ -353,4 +353,23 @@
     - notscored
     - section8.2.3
 
+- name: 8.2.4 Create and Set Permissions on rsyslog Log Files (Scored)
+  lineinfile: dest=/etc/rsyslog.conf regex="^$FileCreateMode" line="$FileCreateMode 0640" state=present
+  notify: restart rsyslog
+  tags:
+    - scored
+    - section8.2.4
+
+- name: 8.2.5 Configure rsyslog to Send Logs to a Remote Log Host (Scored)
+  debug: msg="*** Evaluate your infrastructure first, before sending logs to remote host"
+  tags:
+    - scored
+    - section8.2.5
+
+- name: 8.2.6 Accept Remote rsyslog Messages Only on Designated Log Hosts (Not Scored)
+  debug: msg="*** Evaluate your infrastructure first, before receiving logs from remote host(s)"
+  tags:
+    - scored
+    - section8.2.6
+
 # vim: set sw=2 ts=2:
