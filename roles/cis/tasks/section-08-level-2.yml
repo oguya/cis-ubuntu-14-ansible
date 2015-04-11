@@ -329,4 +329,28 @@
     - scored
     - section8.1.18
 
+- name: 8.2 Configure rsyslog
+  debug: msg="*** rsyslog provides improvements over syslogd, such as connection-oriented (i.e. TCP) transmission of logs logging to database formats and encryption of log data during transmission."
+  tags:
+    - section8.2
+
+- name: 8.2.1 Install the rsyslog package (Scored)
+  apt: name=rsyslog update_cache=yes state=installed
+  tags:
+    - scored
+    - section8.2.1
+
+- name: 8.2.2 Ensure the rsyslog Service is activated (Scored)
+  service: name=rsyslog state=started enabled=yes
+  tags:
+    - scored
+    - section8.2.2
+
+- name: 8.2.3 Configure /etc/rsyslog.conf (Not Scored)
+  copy: src=rsyslog.d/CIS.conf dest=/etc/rsyslog.d/CIS.conf owner=root group=root mode=0644
+  notify: restart rsyslog
+  tags:
+    - notscored
+    - section8.2.3
+
 # vim: set sw=2 ts=2:
