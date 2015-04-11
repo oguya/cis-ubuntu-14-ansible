@@ -184,4 +184,31 @@
     - scored
     - section8.1.10
 
+- name: 8.1.11 Collect Unsuccessful Unauthorized Access Attempts to Files (Scored)
+  with_items:
+    - "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate"
+    - "-F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate"
+    - "-F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate"
+    - "-F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate"
+    - "-F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
+  when: ansible_machine == "x86_64"
+  notify: restart auditd
+  tags:
+    - scored
+    - section8.1.11
+
+- name: 8.1.11 Collect Unsuccessful Unauthorized Access Attempts to Files (Scored)
+  with_items:
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \\"
+    - "-F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \\"
+    - "-F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
+  when: ansible_machine == "i686"
+  tags:
+    - scored
+    - section8.1.11
+
 # vim: set sw=2 ts=2:
