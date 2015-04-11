@@ -104,10 +104,10 @@
 - name: 7.2.8 Enable TCP SYN Cookies (Scored)
   sysctl: name=net.ipv4.tcp_syncookies value=1 ignoreerrors=yes sysctl_set=yes reload=yes state=present
   notify: flush routing cache
-tags:
-  -scored
-  - section7.2
-  - section7.2.8
+  tags:
+    - scored
+    - section7.2
+    - section7.2.8
 
 - name: 7.3 Configure IPv6
   debug: msg="*** If IPv6 is to be used, follow this section of the benchmark to configure IPv6, otherwise disable IPv6"
@@ -247,7 +247,7 @@ tags:
     - notscored
     - section7.6
 
-- 7.7 Ensure Firewall is active (Scored)
+- name: 7.7 Ensure Firewall is active (Scored)
   service: name=ufw state=started enabled=yes
   tags:
     - scored
