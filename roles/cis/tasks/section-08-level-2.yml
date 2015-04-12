@@ -390,4 +390,10 @@
     - scored
     - section8.3.2
 
+- name: 8.4 Configure logrotate (Not Scored)
+  debug: msg="*** Review /etc/logrotate.d/rsyslog to determine if the appropriate system logs are rotated according to your site policy"
+  tags:
+    - notscored
+    - section8.4
+
 # vim: set sw=2 ts=2:
