@@ -372,4 +372,22 @@
     - scored
     - section8.2.6
 
+- name: 8.3 Advanced Intrusion Detection Environment (AIDE)
+  debug: msg="*** AIDE detects unauthorized changes to configuration files by alerting when the files are changed"
+  tags:
+    - section8.3
+
+- name: 8.3.1 Install AIDE (Scored)
+  apt: name=aide update_cache=yes state=present
+  notify: initialize aide
+  tags:
+    - scored
+    - section8.3.1
+
+- name: 8.3.2 Implement Periodic Execution of File Integrity (Scored)
+  copy: src=aide/aide.cron dest=/etc/cron.daily/aide.cron owner=root group=root mode=0755
+  tags:
+    - scored
+    - section8.3.2
+
 # vim: set sw=2 ts=2:
