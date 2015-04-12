@@ -1,0 +1,7 @@
+!#/bin/bash
+
+# CIS 8.3.2 Implement Periodic Execution of File Integrity
+# runs aide everyday
+# drop this script in /etc/cron.daily/
+
+/usr/sbin/aide --check
