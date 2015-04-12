@@ -19,4 +19,7 @@
 - name: restart rsyslog
   service: name=rsyslog state=restarted
 
+- name: initialize aide
+  shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db && /usr/sbin/prelink -ua
+
 # vim: set sw=2 ts=2:
