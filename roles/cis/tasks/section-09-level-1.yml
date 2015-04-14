@@ -122,5 +122,40 @@
     - scored
     - section9.3.5
 
+- name: 9.3.6 Set SSH IgnoreRhosts to Yes (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^IgnoreRhosts" line="IgnoreRhosts yes" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.6
+
+- name: 9.3.7 Set SSH HostbasedAuthentication to No (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^HostbasedAuthentication" line="HostbasedAuthentication no" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.7
+
+- name: 9.3.8 Disable SSH Root Login (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitRootLogin" line="PermitRootLogin no" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.8
+
+- name: 9.3.9 Set SSH PermitEmptyPasswords to No (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitEmptyPasswords" line="PermitEmptyPasswords no" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.9
+
+- name: 9.3.10 Do Not Allow Users to Set Environment Options (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitUserEnvironment" line="PermitUserEnvironment no" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.10
+
 
 # vim: set sw=2 ts=2:
