@@ -58,10 +58,10 @@
 - name: 9.1.8 Restrict at/cron to Authorized Users (Scored)
   file: path={{ item.path }} owner=root group=root mode=0600 state={{ item.state }}
   with_items:
-    - { path: /etc/cron.deny state: absent }
-    - { path: /etc/at.deny state: absent }
-    - { path: /etc/cron.allow state: touch }
-    - { path: /etc/at.allow state: touch }
+    - { path: "/etc/cron.deny", state: absent }
+    - { path: "/etc/at.deny", state: absent }
+    - { path: "/etc/cron.allow", state: touch }
+    - { path: "/etc/at.allow", state: touch }
   tags:
     - scored
     - section9.1
@@ -199,8 +199,8 @@
 - name: 9.3.12 Set Idle Timeout Interval for User Login (Scored)
   lineinfile: dest=/etc/ssh/sshd_config regex={{ item.regex }} line={{ item.line }} state=present
   with_items:
-    - { regex: "^ClientAliveInterval" line: "ClientAliveInterval 300" }
-    - { regex: "^ClientAliveCountMax" line: "ClientAliveCountMax 0" }
+    - { regex: "^ClientAliveInterval", line: "ClientAliveInterval 300" }
+    - { regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0" }
   notify: restart ssh
   tags:
     - scored
