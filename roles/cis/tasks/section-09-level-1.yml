@@ -76,6 +76,7 @@
   copy: src=pam.d/common-password dest=/etc/pam.d/common-password owner=root group=root mode=0644
   tags:
     - scored
+    - section9.2
     - section9.2.1
     - section9.2.3
 
@@ -83,6 +84,7 @@
   lineinfile: dest=/etc/pam.d/login line="auth required pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900" insertbefore=BOF
   tags:
     - notscored
+    - section9.2
     - section9.2.2
 
 - name: 9.3 Configure SSH
