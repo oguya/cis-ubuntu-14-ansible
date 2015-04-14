@@ -388,12 +388,14 @@
   notify: initialize aide
   tags:
     - scored
+    - section8.3
     - section8.3.1
 
 - name: 8.3.2 Implement Periodic Execution of File Integrity (Scored)
   copy: src=aide/aide.cron dest=/etc/cron.daily/aide.cron owner=root group=root mode=0755
   tags:
     - scored
+    - section8.3
     - section8.3.2
 
 - name: 8.4 Configure logrotate (Not Scored)
