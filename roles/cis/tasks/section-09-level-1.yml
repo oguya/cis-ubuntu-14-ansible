@@ -197,5 +197,16 @@
     - scored
     - section9.3.14
 
+- name: 9.4 Restrict root Login to System Console (Not Scored)
+  debug: msg="*** Evaluate your infrastructure before restricting root login to system console"
+  tags:
+    - notscored
+    - section9.4
+
+- name: 9.5 Restrict Access to the su Command (Scored)
+  lineinfile: dest=/etc/pam.d/su line="auth required pam_wheel.so use_uid" insertbefore=BOF state=present
+  tags:
+    - scored
+    - section9.5
 
 # vim: set sw=2 ts=2:
