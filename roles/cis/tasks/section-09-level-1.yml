@@ -82,4 +82,45 @@
   tags:
     - section9.3
 
+- name: 9.3 Configure SSH
+  apt: name=openssh-server update_cache=yes state=present
+  tags:
+    - scored
+    - section9.3
+
+- name: 9.3.1 Set SSH Protocol to 2 (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^Protocol" line="Protocol 2" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.1
+
+- name: 9.3.2 Set LogLevel to INFO (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^LogLevel" line="LogLevel INFO" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.2
+
+- name: 9.3.3 Set Permissions on /etc/ssh/sshd_config (Scored)
+  file: path=/etc/ssh/sshd_config owner=root group=root mode=0600
+  tags:
+    - scored
+    - section9.3.3
+
+- name: 9.3.4 Disable SSH X11 Forwarding (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^X11Forwarding" line="X11Forwarding no" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.4
+
+- name: 9.3.5 Set SSH MaxAuthTries to 4 or Less (Scored)
+  lineinfile: dest=/etc/ssh/sshd_config regex="^MaxAuthTries" line="MaxAuthTries 4" state=present
+  notify: restart ssh
+  tags:
+    - scored
+    - section9.3.5
+
+
 # vim: set sw=2 ts=2:
