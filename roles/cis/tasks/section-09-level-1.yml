@@ -3,6 +3,8 @@
 
 - name: 9.1 Configure cron
   debug: msg="*** the system does have maintenance jobs that may include security monitoring that have to run and cron is used to execute them"
+  tags:
+    - section9.1
 
 - name: 9.1.1 Enable cron Daemon (Scored)
   service: name=cron state=started enabled=yes
