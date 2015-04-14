@@ -338,12 +338,14 @@
   apt: name=rsyslog update_cache=yes state=installed
   tags:
     - scored
+    - section8.2
     - section8.2.1
 
 - name: 8.2.2 Ensure the rsyslog Service is activated (Scored)
   service: name=rsyslog state=started enabled=yes
   tags:
     - scored
+    - section8.2
     - section8.2.2
 
 - name: 8.2.3 Configure /etc/rsyslog.conf (Not Scored)
@@ -351,6 +353,7 @@
   notify: restart rsyslog
   tags:
     - notscored
+    - section8.2
     - section8.2.3
 
 - name: 8.2.4 Create and Set Permissions on rsyslog Log Files (Scored)
@@ -358,18 +361,21 @@
   notify: restart rsyslog
   tags:
     - scored
+    - section8.2
     - section8.2.4
 
 - name: 8.2.5 Configure rsyslog to Send Logs to a Remote Log Host (Scored)
   debug: msg="*** Evaluate your infrastructure first, before sending logs to remote host"
   tags:
     - scored
+    - section8.2
     - section8.2.5
 
 - name: 8.2.6 Accept Remote rsyslog Messages Only on Designated Log Hosts (Not Scored)
   debug: msg="*** Evaluate your infrastructure first, before receiving logs from remote host(s)"
   tags:
     - scored
+    - section8.2
     - section8.2.6
 
 - name: 8.3 Advanced Intrusion Detection Environment (AIDE)
