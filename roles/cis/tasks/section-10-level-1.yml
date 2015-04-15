@@ -39,4 +39,22 @@
     - scored
     - section10.2
 
+- name: 10.3 Set Default Group for root Account (Scored)
+  user: name=root group=root uid=0 state=present
+  tags:
+    - scored
+    - section10.3
+
+- name: 10.4 Set Default umask for Users (Scored)
+  lineinfile: dest=/etc/login.defs regex="^UMASK" line="UMASK 077" state=present
+  tags:
+    - scored
+    - section10.4
+
+- name: 10.5 Lock Inactive User Accounts (Scored)
+  debug: msg="*** Evaluate your infrastructure first, before locking inactive accounts"
+  tags:
+    - scored
+    - section10.5
+
 # vim: set sw=2 ts=2:
