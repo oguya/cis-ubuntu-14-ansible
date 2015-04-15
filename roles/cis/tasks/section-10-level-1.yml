@@ -27,4 +27,16 @@
     - section10.1
     - section10.1.3
 
+- name: 10.2 Disable System Accounts (Scored)
+  copy: src=disable_system_accounts.sh dest=/root/disable_system_accounts.sh owner=root group=root mode=0700
+  tags:
+    - scored
+    - section10.2
+
+- name: 10.2 Disable System Accounts (Scored)
+  shell: /bin/bash /root/disable_system_accounts.sh
+  tags:
+    - scored
+    - section10.2
+
 # vim: set sw=2 ts=2:
