@@ -10,18 +10,21 @@
   lineinfile: dest=/etc/login.defs regex="^PASS_MAX_DAYS" line="PASS_MAX_DAYS 90" state=present
   tags:
     - scored
+    - section10.1
     - section10.1.1
 
 - name: 10.1.2 Set Password Change Minimum Number of Days (Scored)
   lineinfile: dest=/etc/login.defs regex="^PASS_MIN_DAYS" line="PASS_MIN_DAYS 7" state=present
   tags:
     - scored
+    - section10.1
     - section10.1.2
 
 - name: 10.1.3 Set Password Expiring Warning Days (Scored)
   lineinfile: dest=/etc/login.defs regex="^PASS_WARN_AGE" line="PASS_WARN_AGE 7" state=present
   tags:
     - scored
+    - section10.1
     - section10.1.3
 
 # vim: set sw=2 ts=2:
