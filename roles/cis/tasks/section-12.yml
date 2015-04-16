@@ -1,0 +1,8 @@
+---
+# file: tasks/section-12.yml
+# Section 12: Verify System File Permissions
+
+- include: section-12-level-1.yml
+  tags: section-12-level-1
+
+# vim: set sw=2 ts=2:
