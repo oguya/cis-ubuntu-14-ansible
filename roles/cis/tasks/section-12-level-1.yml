@@ -1,13 +1,14 @@
 ---
 #file: tasks/section-12-level-1.yml
 
-- name: 12.1 Verify Permissions on /etc/passwd (Scored)
+- name: 12.1 & 12.4 Verify Permissions on /etc/passwd (Scored)
   file: path=/etc/passwd owner=root group=root mode=0644
   tags:
     - scored
     - section12.1
+    - section12.4
 
-- name: 12.2 Verify Permissions on /etc/shadow (Scored)
+- name: 12.2  & 12.5 Verify Permissions on /etc/shadow (Scored)
   file: path=/etc/shadow owner=root group=root mode=0600
   tags:
     - scored
