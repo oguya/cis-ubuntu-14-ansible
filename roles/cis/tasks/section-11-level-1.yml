@@ -1,0 +1,25 @@
+---
+#file: tasks/section-11-level-1.yml
+
+- name: 11.1 Set Warning Banner for Standard Login Services (Scored)
+  file: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644
+  with_items:
+    - { src: "issue.net", dest: "/etc/issue.net" }
+    - { src: "motd", dest: "/etc/motd" }
+  tags:
+    - scored
+    - section11.1
+
+- name: 11.2 Remove OS Information from Login Warning Banners (Scored)
+  debug: msg="*** Edit the /etc/motd , /etc/issue and /etc/issue.net files and remove any lines containing \m , \r , \s or \v"
+  tags:
+    - scored
+    - section11.1
+
+- name: 11.3 Set Graphical Warning Banner (Not Scored)
+  debug: msg="*** Set a banner for the display manager in use consistent with your organizations policy"
+  tags:
+    - notscored
+    - section11.3
+
+# vim: set sw=2 ts=2:
