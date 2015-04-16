@@ -34,4 +34,7 @@
 - include: section-11.yml
   tags: section11
 
+- include: section-12.yml
+  tags: section12
+
 # vim: set sw=2 ts=2:
