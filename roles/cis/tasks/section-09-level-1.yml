@@ -99,7 +99,7 @@
     - section9.3
 
 - name: 9.3.1 Set SSH Protocol to 2 (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^Protocol" line="Protocol 2" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^Protocol" line="Protocol 2" state=present
   notify: restart ssh
   tags:
     - scored
@@ -107,7 +107,7 @@
     - section9.3.1
 
 - name: 9.3.2 Set LogLevel to INFO (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^LogLevel" line="LogLevel INFO" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^LogLevel" line="LogLevel INFO" state=present
   notify: restart ssh
   tags:
     - scored
@@ -122,7 +122,7 @@
     - section9.3.3
 
 - name: 9.3.4 Disable SSH X11 Forwarding (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^X11Forwarding" line="X11Forwarding no" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^X11Forwarding" line="X11Forwarding no" state=present
   notify: restart ssh
   tags:
     - scored
@@ -130,7 +130,7 @@
     - section9.3.4
 
 - name: 9.3.5 Set SSH MaxAuthTries to 4 or Less (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^MaxAuthTries" line="MaxAuthTries 4" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^MaxAuthTries" line="MaxAuthTries 4" state=present
   notify: restart ssh
   tags:
     - scored
@@ -138,7 +138,7 @@
     - section9.3.5
 
 - name: 9.3.6 Set SSH IgnoreRhosts to Yes (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^IgnoreRhosts" line="IgnoreRhosts yes" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^IgnoreRhosts" line="IgnoreRhosts yes" state=present
   notify: restart ssh
   tags:
     - scored
@@ -146,7 +146,7 @@
     - section9.3.6
 
 - name: 9.3.7 Set SSH HostbasedAuthentication to No (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^HostbasedAuthentication" line="HostbasedAuthentication no" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^HostbasedAuthentication" line="HostbasedAuthentication no" state=present
   notify: restart ssh
   tags:
     - scored
@@ -154,7 +154,7 @@
     - section9.3.7
 
 - name: 9.3.8 Disable SSH Root Login (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitRootLogin" line="PermitRootLogin no" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
   notify: restart ssh
   tags:
     - scored
@@ -162,7 +162,7 @@
     - section9.3.8
 
 - name: 9.3.9 Set SSH PermitEmptyPasswords to No (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitEmptyPasswords" line="PermitEmptyPasswords no" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitEmptyPasswords" line="PermitEmptyPasswords no" state=present
   notify: restart ssh
   tags:
     - scored
@@ -170,7 +170,7 @@
     - section9.3.9
 
 - name: 9.3.10 Do Not Allow Users to Set Environment Options (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^PermitUserEnvironment" line="PermitUserEnvironment no" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitUserEnvironment" line="PermitUserEnvironment no" state=present
   notify: restart ssh
   tags:
     - scored
@@ -178,7 +178,7 @@
     - section9.3.10
 
 - name: 9.3.11 Use Only Approved Cipher in Counter Mode (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^Ciphers" line="Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes128-ctr" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^Ciphers" line="Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes128-ctr" state=present
   notify: restart ssh
   tags:
     - scored
@@ -197,7 +197,7 @@
     - section9.3.11
 
 - name: 9.3.12 Set Idle Timeout Interval for User Login (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex={{ item.regex }} line={{ item.line }} state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp={{ item.regex }} line={{ item.line }} state=present
   with_items:
     - { regex: "^ClientAliveInterval", line: "ClientAliveInterval 300" }
     - { regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0" }
@@ -215,7 +215,7 @@
     - section9.3.13
 
 - name: 9.3.14 Set SSH Banner (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regex="^Banner" line="Banner /etc/issue.net" state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^Banner" line="Banner /etc/issue.net" state=present
   notify: restart ssh
   tags:
     - scored
