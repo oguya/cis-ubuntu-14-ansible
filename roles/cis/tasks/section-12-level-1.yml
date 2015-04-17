@@ -15,4 +15,24 @@
     - section12.2
     - section12.5
 
+- name: 12.3 & 12.6 Verify Permissions on /etc/group (Scored)
+  file: path=/etc/group owner=root group=root mode=0644
+  tags:
+    - scored
+    - section12.3
+    - section12.6
+
+- name: 12.7 Find World Writable Files (Not Scored)
+  debug: msg="*** Evaluate your infrastructure before removing world writable files"
+  tags:
+    - scored
+    - section12.7
+
+- name: 12.8 Find Un-owned Files and Directories (Scored)
+  debug: msg="*** Find files that are owned by users or groups not listed in the system configuration files, and reset the ownership of these files to some active user on the system"
+#  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser - ls
+  tags:
+    - scored
+    - section12.8
+
 # vim: set sw=2 ts=2:
