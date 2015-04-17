@@ -25,7 +25,7 @@
 - name: 12.7 Find World Writable Files (Not Scored)
   debug: msg="*** Evaluate your infrastructure before removing world writable files"
   tags:
-    - scored
+    - notscored
     - section12.7
 
 - name: 12.8 Find Un-owned Files and Directories (Scored)
