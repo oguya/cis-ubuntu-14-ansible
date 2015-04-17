@@ -52,8 +52,8 @@
 - name: 12.11 Find SGID System Executables (Not Scored)
   debug: msg="*** Ensure that no rogue set-GID programs have been introduced into the system"
 #  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -print
-   tags:
-     - notscored
-     - section12.11
+  tags:
+    - notscored
+    - section12.11
 
 # vim: set sw=2 ts=2:
