@@ -7,7 +7,7 @@
     - section8.1.1
 
 - name: 8.1.1.1 Configure Audit Log Storage Size (Not Scored)
-  lineinfile: dest="/etc/audit/auditd.conf" regex="^max_log_file" line="max_log_file = 10"
+  lineinfile: dest=/etc/audit/auditd.conf regexp="^max_log_file" line="max_log_file = 10" state=present
   notify: restart auditd
   tags:
     - notscored
@@ -15,7 +15,7 @@
     - section8.1.1.1
 
 - name: 8.1.1.2 Disable System on Audit Log Full (Not Scored)
-  lineinfile: dest="/etc/audit/auditd.conf" regex={{ item.regex }} line={{ item.line }}
+  lineinfile: dest="/etc/audit/auditd.conf" regexp={{ item.regex }} line={{ item.line }}
   with_items:
     - { regex: "^space_left_action", line: "space_left_action = email" }
     - { regex: "^action_mail_acct", line: "action_mail_acct = root" }
@@ -27,7 +27,7 @@
     - section8.1.1.2
 
 - name: 8.1.1.3 Keep All Auditing Information (Scored)
-  lineinfile: dest="/etc/audit/auditd.conf" regex="^max_log_file_action" line="max_log_file_action = keep_logs" state=present
+  lineinfile: dest="/etc/audit/auditd.conf" regexp="^max_log_file_action" line="max_log_file_action = keep_logs" state=present
   notify: restart auditd
   tags:
     - scored
@@ -357,7 +357,7 @@
     - section8.2.3
 
 - name: 8.2.4 Create and Set Permissions on rsyslog Log Files (Scored)
-  lineinfile: dest=/etc/rsyslog.conf regex="^$FileCreateMode" line="$FileCreateMode 0640" state=present
+  lineinfile: dest=/etc/rsyslog.conf regexp="^$FileCreateMode" line="$FileCreateMode 0640" state=present
   notify: restart rsyslog
   tags:
     - scored
