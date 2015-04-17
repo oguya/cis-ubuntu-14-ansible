@@ -35,4 +35,25 @@
     - scored
     - section12.8
 
+- name: 12.9 Find Un-grouped Files and Directories (Scored)
+  debug: msg="*** Find files that are owned by users or groups not listed in the system configuration files, and reset the ownership of these files to some active user on the system"
+#  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup - ls
+  tags:
+    - scored
+    - section12.9
+
+- name: 12.10 Find SUID System Executables (Not Scored)
+  debug: msg="*** Ensure that no rogue set-UID programs have been introduced into the system"
+# shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -print
+  tags:
+    - notscored
+    - section12.10
+
+- name: 12.11 Find SGID System Executables (Not Scored)
+  debug: msg="*** Ensure that no rogue set-GID programs have been introduced into the system"
+#  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -print
+   tags:
+     - notscored
+     - section12.11
+
 # vim: set sw=2 ts=2:
