@@ -1,0 +1,11 @@
+---
+# file: tasks/section-13-level-1.yml
+
+- name: 13.1 Ensure Password Fields are Not Empty (Scored)
+#  shell: /bin/cat /etc/shadow | /usr/bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}'
+  debug: msg="*** Evaluate your infrastructure before locking passwordless accounts"
+  tags:
+    - scored
+    - section13.1
+
+# vim: set sw=2 ts=2:
