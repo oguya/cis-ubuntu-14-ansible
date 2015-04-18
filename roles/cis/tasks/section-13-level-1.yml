@@ -29,5 +29,11 @@
     - scored
     - section13.4
 
+- name: 13.5 Verify No UID 0 Accounts Exist Other Than root (Scored)
+#  shell:/bin/cat /etc/passwd | /usr/bin/awk -F: '($3 == 0) { print $1 }'
+  debug: msg="*** Ensure that only the word 'root' is returned by `cat /etc/passwd | /usr/bin/awk -F: '($3 == 0) { print $1 }`"
+  tags:
+    - scored
+    - section13.5
 
 # vim: set sw=2 ts=2:
