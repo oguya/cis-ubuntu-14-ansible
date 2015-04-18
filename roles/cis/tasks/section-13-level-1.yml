@@ -8,4 +8,26 @@
     - scored
     - section13.1
 
+- name: 13.2 Verify No Legacy "+" Entries Exist in /etc/passwd File (Scored)
+#  shell: /bin/grep '^+:' /etc/passwd
+  debug: msg="*** Delete entries in /etc/password provided by `grep '^+:' /etc/passwd`"
+  tags:
+    - scored
+    - section13.2
+
+- name: 13.3 Verify No Legacy "+" Entries Exist in /etc/shadow File (Scored)
+#  shell: /bin/grep '^+:' /etc/shadow
+  debug: msg="*** Delete entries in /etc/shadow provided by `grep '^+:' /etc/shadow`"
+  tags:
+    - scored
+    - section13.3
+
+- name: 13.4 Verify No Legacy "+" Entries Exist in /etc/group File (Scored)
+#  shell: /bin/grep '^+:' /etc/group
+  debug: msg="*** Delete entries in /etc/group provided by `grep '^+:' /etc/group`"
+  tags:
+    - scored
+    - section13.4
+
+
 # vim: set sw=2 ts=2:
