@@ -36,4 +36,16 @@
     - scored
     - section13.5
 
+- name: 13.6 Ensure root PATH Integrity (Scored)
+  copy: src=check_path_integrity.sh dest=/root/check_path_integrity.sh owner=root group=root mode=755
+  tags:
+    - scored
+    - section13.6
+
+- name: 13.6 Ensure root PATH Integrity (Scored)
+  shell: bash /root/check_path_integrity.sh
+  tags:
+    - scored
+    - section13.6
+
 # vim: set sw=2 ts=2:
