@@ -79,5 +79,44 @@
     - scored
     - sectin13.10
 
+- name: 13.11 Check Groups in /etc/passwd (Scored)
+  copy: src=check_groups.sh dest=/root/check_groups.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.11
+
+- name: 13.11 Check Groups in /etc/passwd (Scored)
+  shell: bash /root/check_groups.sh
+  register: check_groups
+  tags:
+    - scored
+    - section13.11
+
+- name: 13.11 Check Groups in /etc/passwd (Scored)
+  debug: msg="{{check_groups.stdout}}"
+  when: check_groups is defined
+  tags:
+    - scored
+    - section13.11
+
+- name: 13.12 Check That Users Are Assigned Valid Home Directories (Scored)
+  copy: src=check_home_dirs.sh dest=/root/check_home_dirs.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.12
+
+- name: 13.12 Check That Users Are Assigned Valid Home Directories (Scored)
+  shell: bash /root/check_home_dirs.sh
+  register: check_home_dirs
+  tags:
+    - scored
+    - section13.12
+
+- name: 13.12 Check That Users Are Assigned Valid Home Directories (Scored)
+  debug: msg="{{check_home_dirs.stdout}}"
+  when: check_home_dirs is defined and check_home_dirs.stdout exists
+  tags:
+    - scored
+    - section13.12
 
 # vim: set sw=2 ts=2:
