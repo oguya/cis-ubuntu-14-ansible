@@ -186,7 +186,7 @@
     - section9.3.11
 
 - name: 9.3.11 Use Only Approved Cipher in Counter Mode (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config line={{ item }} state=present insertafter=EOF
+  lineinfile: dest=/etc/ssh/sshd_config line="{{item}}" state=present insertafter=EOF
   with_items:
     - "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160"
     - "KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1"
