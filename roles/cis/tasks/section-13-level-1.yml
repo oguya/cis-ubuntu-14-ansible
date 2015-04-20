@@ -38,7 +38,7 @@
 
 - name: 13.5 Verify No UID 0 Accounts Exist Other Than root. Ensure that only the word 'root' is returned
   debug: msg="{{uid_results.stdout}}"
-  when: uid_results is defined
+  when: uid_results is defined and uid_results.stdout|length > 0
   tags:
     - scored
     - section13.5
@@ -94,7 +94,7 @@
 
 - name: 13.11 Check Groups in /etc/passwd (Scored)
   debug: msg="{{check_groups.stdout}}"
-  when: check_groups is defined
+  when: check_groups is defined and check_groups.stdout|length > 0
   tags:
     - scored
     - section13.11
@@ -114,7 +114,7 @@
 
 - name: 13.12 Check That Users Are Assigned Valid Home Directories (Scored)
   debug: msg="{{check_home_dirs.stdout}}"
-  when: check_home_dirs is defined and check_home_dirs.stdout exists
+  when: check_home_dirs is defined and check_home_dirs.stdout|length > 0
   tags:
     - scored
     - section13.12
