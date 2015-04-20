@@ -30,8 +30,15 @@
     - section13.4
 
 - name: 13.5 Verify No UID 0 Accounts Exist Other Than root (Scored)
-#  shell:/bin/cat /etc/passwd | /usr/bin/awk -F: '($3 == 0) { print $1 }'
-  debug: msg="*** Ensure that only the word 'root' is returned by `cat /etc/passwd | /usr/bin/awk -F: '($3 == 0) { print $1 }`"
+  shell: /bin/cat /etc/passwd | /usr/bin/awk -F':' '($3 == 0) { print $1 }'
+  register: uid_results
+  tags:
+    - scored
+    - section13.5
+
+- name: 13.5 Verify No UID 0 Accounts Exist Other Than root. Ensure that only the word 'root' is returned
+  debug: msg="{{uid_results.stdout}}"
+  when: uid_results is defined
   tags:
     - scored
     - section13.5
