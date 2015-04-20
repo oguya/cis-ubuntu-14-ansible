@@ -55,4 +55,29 @@
     - scored
     - section13.6
 
+- name: 13.7 Check Permissions on User Home Directories (Scored)
+  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  tags:
+    - scored
+    - section13.7
+
+- name: 13.8 Check User Dot File Permissions (Scored)
+  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  tags:
+    - scored
+    - section13.8
+
+- name: 13.9 Check Permissions on User .netrc Files (Scored)
+  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  tags:
+    - scored
+    - section13.8
+
+- name: 13.10 Check for Presence of User .rhosts Files (Scored)
+  debug: msg="*** If any users have .rhosts files determine why they have them"
+  tags:
+    - scored
+    - sectin13.10
+
+
 # vim: set sw=2 ts=2:
