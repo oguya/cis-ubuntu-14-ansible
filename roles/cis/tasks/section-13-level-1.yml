@@ -179,5 +179,63 @@
     - scored
     - section13.15
 
+- name: 13.16 Check for Duplicate User Names (Scored)
+  copy: src=check_duplicate_usernames.sh dest=/root/check_duplicate_usernames.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.16
+
+- name: 13.16 Check for Duplicate User Names (Scored)
+  shell: bash /root/check_duplicate_usernames.sh
+  register: check_duplicate_usernames
+  tags:
+    - scored
+    - section13.16
+
+- name: 13.16 Check for Duplicate User Names (Scored)
+  debug: msg="{{check_duplicate_usernames.stdout}}"
+  when: check_duplicate_usernames is defined and check_duplicate_usernames.stdout|length > 0
+  tags:
+    - scored
+    - section13.16
+
+- name: 13.17 Check for Duplicate Group Names (Scored)
+  copy: src=check_duplicate_groupnames.sh dest=/root/check_duplicate_groupnames.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.17
+
+- name: 13.17 Check for Duplicate Group Names (Scored)
+  shell: bash /root/check_duplicate_groupnames.sh
+  register: check_duplicate_groupnames
+  tags:
+    - scored
+    - section13.17
+
+- name: 13.17 Check for Duplicate Group Names (Scored)
+  debug: msg="{{check_duplicate_groupnames.stdout}}"
+  when: check_duplicate_groupnames is defined and check_duplicate_groupnames.stdout|length > 0
+  tags:
+    - scored
+    - section13.17
+
+- name: 13.18 Check for Presence of User .netrc Files (Scored)
+  debug: msg="*** Making global modifications to users' files without alerting the user community can result in unexpected outages and unhappy users"
+  tags:
+    - scored
+    - section13.18
+
+- name: 13.19 Check for Presence of User .forward Files (Scored)
+  debug: msg="*** Making global modifications to users' files without alerting the user community can result in unexpected outages and unhappy users"
+  tags:
+    - scored
+    - section13.19
+
+- name: 13.20 Ensure shadow group is empty (Scored)
+# shell: grep ^shadow /etc/group && awk -F: '($4 == "<shadow-gid>") { print }' /etc/passwd
+  debug: msg="*** Remove all users from the shadow group, and change the primary group of any users with shadow as their primary group."
+  tags:
+    - scored
+    - section13.20
 
 # vim: set sw=2 ts=2:
