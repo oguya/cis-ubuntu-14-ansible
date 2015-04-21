@@ -119,4 +119,65 @@
     - scored
     - section13.12
 
+- name: 13.13 Check User Home Directory Ownership (Scored)
+  copy: src=check_home_ownership.sh dest=/root/check_home_ownership.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.13
+
+- name: 13.13 Check User Home Directory Ownership (Scored)
+  shell: bash /root/check_home_ownership.sh
+  register: check_home_ownership
+  tags:
+    - scored
+    - section13.13
+
+- name: 13.13 Check User Home Directory Ownership (Scored)
+  debug: msg="{{check_home_ownership.stdout}}"
+  when: check_home_ownership is defined and check_home_ownership.stdout|length > 0
+  tags:
+    - scored
+    - section13.13
+
+- name: 13.14 Check for Duplicate UIDs (Scored)
+  copy: src=check_duplicate_uids.sh dest=root/check_duplicate_uids.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.14
+
+- name: 13.14 Check for Duplicate UIDs (Scored)
+  shell: bash /root/check_duplicate_uids.sh
+  register: check_duplicate_uids
+  tags:
+    - scored
+    - section13.14
+
+- name: 13.14 Check for Duplicate UIDs (Scored)
+  debug: msg="{{check_duplicate_uids.stdout}}"
+  when: check_duplicate_uids is defined and check_duplicate_uids.stdout|length > 0
+  tags:
+    - scored
+    - section13.14
+
+- name: 13.15 Check for Duplicate GIDs (Scored)
+  copy: src=check_duplicate_gids.sh dest=/root/check_duplicate_gids.sh owner=root group=root mode=0750
+  tags:
+    - scored
+    - section13.15
+
+- name: 13.15 Check for Duplicate GIDs (Scored)
+  shell: bash /root/check_duplicate_gids.sh
+  register: check_duplicate_gids
+  tags:
+    - scored
+    - section13.15
+
+- name: 13.15 Check for Duplicate GIDs (Scored)
+  debug: msg="{{check_duplicate_gids.stdout}}"
+  when: check_duplicate_gids is defined and check_duplicate_gids.stdout|length > 0
+  tags:
+    - scored
+    - section13.15
+
+
 # vim: set sw=2 ts=2:
