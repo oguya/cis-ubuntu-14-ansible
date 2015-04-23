@@ -2,7 +2,7 @@
 #file: tasks/section-11-level-1.yml
 
 - name: 11.1 Set Warning Banner for Standard Login Services (Scored)
-  file: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644
+  copy: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644
   with_items:
     - { src: "issue.net", dest: "/etc/issue.net" }
     - { src: "motd", dest: "/etc/motd" }
