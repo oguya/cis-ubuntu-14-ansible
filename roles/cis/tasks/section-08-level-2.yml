@@ -156,18 +156,12 @@
 - name: 8.1.10 Collect Discretionary Access Control Permission Modification Events (Scored)
   lineinfile: dest=/etc/audit/audit.rules line="{{item}}" insertafter=EOF state=present
   with_items:
-    - "-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
-    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
-    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
   when: ansible_machine == "x86_64"
   notify: restart auditd
   tags:
@@ -177,12 +171,9 @@
 - name: 8.1.10 Collect Discretionary Access Control Permission Modification Events (Scored)
   lineinfile: dest=/etc/audit/audit.rules line="{{item}}" insertafter=EOF state=present
   with_items:
-    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 \\"
-    - "-F auid!=4294967295 -k perm_mod"
-    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S \\"
-    - "lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod"
+    - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod"
   when: ansible_machine == "i686"
   notify: restart auditd
   tags:
@@ -209,10 +200,8 @@
 - name: 8.1.11 Collect Unsuccessful Unauthorized Access Attempts to Files (Scored)
   lineinfile: dest=/etc/audit/audit.rules line="{{item}}" insertafter=EOF state=present
   with_items:
-    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \\"
-    - "-F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access"
-    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate \\"
-    - "-F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access"
+    - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access"
   when: ansible_machine == "i686"
   notify: restart auditd
   tags:
@@ -259,10 +248,8 @@
 - name: 8.1.14 Collect File Deletion Events by User (Scored)
   lineinfile: dest=/etc/audit/audit.rules line="{{item}}" insertafter=EOF state=present
   with_items:
-    - "-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k delete"
-    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k delete"
+    - "-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete"
+    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete"
   when: ansible_machine == "x86_64"
   notify: restart auditd
   tags:
@@ -272,8 +259,7 @@
 - name: 8.1.14 Collect File Deletion Events by User (Scored)
   lineinfile: dest=/etc/audit/audit.rules line="{{item}}" insertafter=EOF state=present
   with_items:
-    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 \\"
-    - "-F auid!=4294967295 -k delete"
+    - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete"
   when: ansible_machine == "i686"
   notify: restart auditd
   tags:
