@@ -197,7 +197,7 @@
     - section9.3.11
 
 - name: 9.3.12 Set Idle Timeout Interval for User Login (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regexp={{ item.regex }} line={{ item.line }} state=present
+  lineinfile: dest=/etc/ssh/sshd_config regexp={{ item.regex }} line="{{item.line}}" state=present
   with_items:
     - { regex: "^ClientAliveInterval", line: "ClientAliveInterval 300" }
     - { regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0" }
