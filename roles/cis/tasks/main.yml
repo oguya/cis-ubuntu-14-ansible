@@ -2,42 +2,42 @@
 # file: tasks/main.yml
 
 - include: section-01.yml
-  tags: section1
+  tags: section-01
 
 - include: section-02.yml
-  tags: section2
+  tags: section-02
 
 - include: section-03.yml
-  tags: section3
+  tags: section-03
 
 - include: section-04.yml
-  tags: section4
+  tags: section-04
 
 - include: section-05.yml
-  tags: section5
+  tags: section-05
 
 - include: section-06.yml
-  tags: section6
+  tags: section-06
 
 - include: section-07.yml
-  tags: section7
+  tags: section-07
 
 - include: section-08.yml
-  tags: section8
+  tags: section-08
 
 - include: section-09.yml
-  tags: section9
+  tags: section-09
 
 - include: section-10.yml
-  tags: section10
+  tags: section-10
 
 - include: section-11.yml
-  tags: section11
+  tags: section-11
 
 - include: section-12.yml
-  tags: section12
+  tags: section-12
 
 - include: section-13.yml
-  tags: section13
+  tags: section-13
 
 # vim: set sw=2 ts=2:
