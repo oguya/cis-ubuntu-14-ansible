@@ -29,7 +29,7 @@
     - section8.1.1.1
 
 - name: 8.1.1.2 Disable System on Audit Log Full (Not Scored)
-  lineinfile: dest="/etc/audit/auditd.conf" regexp={{ item.regex }} line={{ item.line }}
+  lineinfile: dest="/etc/audit/auditd.conf" regexp="{{item.regex}}" line="{{item.line}}"
   with_items:
     - { regex: "^space_left_action", line: "space_left_action = email" }
     - { regex: "^action_mail_acct", line: "action_mail_acct = root" }
