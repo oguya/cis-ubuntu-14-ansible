@@ -22,4 +22,7 @@
 - name: initialize aide
   shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db && /usr/sbin/prelink -ua
 
+- name: restart ssh
+  service: name=ssh state=restarted
+
 # vim: set sw=2 ts=2:
