@@ -3,7 +3,7 @@
 This is an Ansible playbook for deploying [CIS Security Benchmarks](http://benchmarks.cisecurity.org/) to system(s) running Ubuntu 14.04.
 
 ### CIS Security Benchmarks
-"The CIS Security Benchmarks program provides well-defined, unbiased & consensus-based indusity best practices to help organizations assess and improve their security.
+"The CIS Security Benchmarks program provides well-defined, unbiased & consensus-based industry best practices to help organizations assess and improve their security.
 Resources include secure configuration benchmarks, automated configuration assessment tools and content, security metrics and security software product certifications..."*[read more](https://benchmarks.cisecurity.org/about/)*
 
 ### Ansible Playbook
