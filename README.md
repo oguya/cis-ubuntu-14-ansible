@@ -80,3 +80,11 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 
         ansible-playbook cis.yml -K --tags=notscored
 
+
+### Assumptions
+I took into assumption, a few key items when running this playbook:
+- you have a provisioning user account with passwordless SSH access to the target host
+- the provisioning user has sudo privileges on the remote host
+
+### Contribution
+[Pull requests](https://github.com/oguya/cis-ubuntu-14-ansible/pulls) and [Github issues](https://github.com/oguya/cis-ubuntu-14-ansible/issues) are all welcome!
