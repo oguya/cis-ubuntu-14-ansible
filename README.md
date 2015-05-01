@@ -36,3 +36,47 @@ This playbook will configure your system to meet at most all of the CIS Security
 
 Before, deploying CIS Security Benchmarks & recommendations to your server(s), please have a look at the [documentation](https://benchmarks.cisecurity.org/downloads/show-single/?file=ubuntu1404.100)
 
+### Usage
+
+> **NOTE**
+> Don't run this playbook blindly on an active production system! It will make modifications your systems that you may or may not intend to have.
+
+- clone this repo:
+
+        git clone https://github.com/oguya/cis-ubuntu-14-ansible.git
+        cd cis-ubuntu-14-ansible
+
+- add your target host in the [inventory](http://docs.ansible.com/intro_inventory.html) `hosts` file, for example: `ubuntu01` host as the target host belonging to the `ubuntu` group:
+
+        [ubuntu]
+        ubuntu01
+
+- create a host variable file in the `host_vars/` directory for your target host. e.g. `host_vars/ubuntu01`, whereby `[ansible_ssh_host](http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parameters)` is the ip address of the target host.
+
+        ---
+        ansible_ssh_host: 172.26.23.225
+
+- dry run the playbook:
+
+        ansible-playbook cis.yml -K --check
+
+- dry run a particular section, e.g. section 8.1.8
+
+        ansible-playbook cis.yml -K --tags=section8.1.8 --check
+
+- run benchmarks listed in Level 1
+
+        ansible-playbook cis.yml -K --tags=level-1
+
+- run benchmarks listed in Level 2
+
+        ansible-playbook cis.yml -K --tags=level-2
+
+- run all *scored* benchmarks
+
+        ansible-playbook cis.yml -K --tags=scored
+
+- run all *not scored* benchmarks
+
+        ansible-playbook cis.yml -K --tags=notscored
+
