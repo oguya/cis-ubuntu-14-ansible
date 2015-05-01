@@ -3,6 +3,8 @@
 # Section 3: Secure Boot Settings
 
 - include: section-03-level-1.yml
-  tags: section-03-level-1
+  tags:
+    - level-1
+    - section-03-level-1
 
 # vim: set sw=2 ts=2:

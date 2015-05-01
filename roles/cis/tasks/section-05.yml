@@ -3,6 +3,8 @@
 # Section 5: OS Services
 
 - include: section-05-level-1.yml
-  tags: section-05-level-1
+  tags:
+    - level-1
+    - section-05-level-1
 
 # vim: set sw=2 ts=2:

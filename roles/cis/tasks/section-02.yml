@@ -2,9 +2,13 @@
 # file: tasks/section-02.yml
 
 - include: section-02-level-1.yml
-  tags: section2-level-1
+  tags:
+    - level-1
+    - section2-level-1
 
 - include: section-02-level-2.yml
-  tags: section2-level-2
+  tags:
+    - level-2
+    - section2-level-2
 
 # vim: set sw=2 ts=2:
