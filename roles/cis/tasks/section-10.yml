@@ -3,6 +3,8 @@
 # Section 10: User Accounts and Environment
 
 - include: section-10-level-1.yml
-  tags: section-10-level-1
+  tags:
+    - level-1
+    - section-10-level-1
 
 # vim: set sw=2 ts=2:

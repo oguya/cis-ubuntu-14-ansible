@@ -3,6 +3,8 @@
 # Section 12: Verify System File Permissions
 
 - include: section-12-level-1.yml
-  tags: section-12-level-1
+  tags:
+    - level-1
+    - section-12-level-1
 
 # vim: set sw=2 ts=2:

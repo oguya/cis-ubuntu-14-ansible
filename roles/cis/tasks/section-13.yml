@@ -3,6 +3,8 @@
 # Section 13: Review User and Group Settings
 
 - include: section-13-level-1.yml
-  tags: section-13-level-1
+  tags:
+    - level-1
+    - section-13-level-1
 
 # vim: set sw=2 ts=2:
