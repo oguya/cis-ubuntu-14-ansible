@@ -3,6 +3,8 @@
 # Section 9: System Access, Authentication and Authorization
 
 - include: section-09-level-1.yml
-  tags: section-09-level-1
+  tags:
+    - level-1
+    - section-09-level-1
 
 # vim: set sw=2 ts=2:
