@@ -82,6 +82,14 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 
         ansible-playbook cis.yml -K --tags=notscored
 
+- run *scored*(i.e. ignore *not scored*) benchmarks listed in Level 1
+
+        ansible-playbook cis.yml -K --tags=level-1 --skip-tags=notscored
+
+- run *not scored*(i.e. ignore *scored*) benchmarks listed in Level 2
+
+        ansible-playbook cis.yml -K --tags=level-2 --skip-tags=scored
+
 
 ## Assumptions
 I took into assumption, a few key items when running this playbook:
