@@ -53,7 +53,7 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
         [ubuntu]
         ubuntu01
 
-- create a host variable file in the `host_vars/` directory for your target host. e.g. `host_vars/ubuntu01`, whereby `[ansible_ssh_host](http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parameters)` is the ip address of the target host.
+- create a host variable file in the `host_vars/` directory for your target host. e.g. `host_vars/ubuntu01`, whereby [ansible_ssh_host](http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parameters) is the ip address of the target host.
 
         ---
         ansible_ssh_host: 172.26.23.225
