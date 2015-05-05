@@ -140,7 +140,7 @@
     - section13.13
 
 - name: 13.14 Check for Duplicate UIDs (Scored)
-  copy: src=check_duplicate_uids.sh dest=root/check_duplicate_uids.sh owner=root group=root mode=0750
+  copy: src=check_duplicate_uids.sh dest=/root/check_duplicate_uids.sh owner=root group=root mode=0750
   tags:
     - scored
     - section13.14
