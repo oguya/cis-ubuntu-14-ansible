@@ -25,4 +25,7 @@
 - name: restart ssh
   service: name=ssh state=restarted
 
+- name: enforce apparmor profiles
+  shell: aa-enforce /etc/apparmor.d/*
+
 # vim: set sw=2 ts=2:
