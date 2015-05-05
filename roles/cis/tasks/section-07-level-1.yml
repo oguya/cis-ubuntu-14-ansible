@@ -204,7 +204,7 @@
 
 - name: Create /etc/modprobe.d/CIS.conf
   file: path=/etc/modprobe.d/CIS.conf state=touch owner=root group=root mode=0644
-  when: modprobe_cis_path is not defined
+  when: not modprobe_cis_path.stat.exists
   tags:
     - section7.5
     - section7.5.1
