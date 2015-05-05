@@ -9,12 +9,14 @@ Resources include secure configuration benchmarks, automated configuration asses
 CIS benchmarks & recommendations are grouped into two(2) level - Level 1 & Level 2.
 
 **Level 1**
+
 Items in this profile intend to:
 - be practical and prudent
 - provide a clear security benefit
 - have minimum effect on production workload
 
 **Level 2**
+
 This is an extension of Level 1 but with the following characteristics:
 - intended for environments or use cases where security is paramount
 - acts as a defense in depth measure
