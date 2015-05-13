@@ -345,7 +345,7 @@
     - section8.2.3
 
 - name: 8.2.4 Create and Set Permissions on rsyslog Log Files (Scored)
-  lineinfile: dest=/etc/rsyslog.conf regexp="^$FileCreateMode" line="$FileCreateMode 0640" state=present
+  lineinfile: dest=/etc/rsyslog.conf regexp='^\$FileCreateMode' line="$FileCreateMode 0640" insertafter=EOF state=present
   notify: restart rsyslog
   tags:
     - scored
