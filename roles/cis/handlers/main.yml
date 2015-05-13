@@ -17,13 +17,13 @@
   service: name=auditd state=restarted
 
 - name: restart rsyslog
-  service: name=rsyslog state=restarted
+  command: service rsyslog restart
 
 - name: initialize aide
   shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db && /usr/sbin/prelink -ua
 
 - name: restart ssh
-  service: name=ssh state=restarted
+  command: service ssh restart
 
 - name: enforce apparmor profiles
   shell: aa-enforce /etc/apparmor.d/*
