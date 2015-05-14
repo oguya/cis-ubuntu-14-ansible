@@ -1,8 +1,8 @@
-# Deploy CIS Benchmarks on Ubuntu 14.04 hosts using Ansible
+## Deploy CIS Benchmarks on Ubuntu 14.04 hosts using Ansible
 
 This is an Ansible playbook for deploying [CIS Security Benchmarks](http://benchmarks.cisecurity.org/) to system(s) running Ubuntu 14.04.
 
-## CIS Security Benchmarks
+### CIS Security Benchmarks
 "The CIS Security Benchmarks program provides well-defined, unbiased & consensus-based industry best practices to help organizations assess and improve their security.
 Resources include secure configuration benchmarks, automated configuration assessment tools and content, security metrics and security software product certifications..."*[read more](https://benchmarks.cisecurity.org/about/)*
 
@@ -33,12 +33,12 @@ CIS benchmarks are scored to indicate whether compliance with the given recommen
 - Failure to comply with "Not Scored" recommendations will not decrease the final benchmark score
 - Compliance with "Not Scored" recommendations will not increase the final benchmark score
 
-## Ansible Playbook
+### Ansible Playbook
 This playbook will configure your system to meet at most all of the CIS Security benchmarks. Please note that some of the recommendations from CIS Benchmarks can not be automated & deployed via ansible playbooks. Therefore, you'll have to apply such recommendations manually.
 
 Before, deploying CIS Security Benchmarks & recommendations to your server(s), please have a look at the [documentation](https://benchmarks.cisecurity.org/downloads/show-single/?file=ubuntu1404.100)
 
-## Usage
+### Usage
 
 > **NOTE**
 > Don't run this playbook blindly on an active production system! It will make modifications your systems that you may or may not intend to have.
@@ -91,10 +91,10 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
         ansible-playbook cis.yml -K --tags=level-2 --skip-tags=scored
 
 
-## Assumptions
+### Assumptions
 I took into assumption, a few key items when running this playbook:
 - you have a provisioning user account with passwordless SSH access to the target host
 - the provisioning user has sudo privileges on the remote host
 
-## Contribution
+### Contribution
 [Pull requests](https://github.com/oguya/cis-ubuntu-14-ansible/pulls) and [Github issues](https://github.com/oguya/cis-ubuntu-14-ansible/issues) are all welcome!
