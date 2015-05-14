@@ -40,7 +40,7 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 
 ### Usage
 
-> **NOTE**
+> **NOTE**<br/>
 > Don't run this playbook blindly on an active production system! It will make modifications your systems that you may or may not intend to have.
 
 - clone this repo:
