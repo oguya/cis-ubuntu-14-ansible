@@ -43,3 +43,20 @@ Skipped: Presumed you won't have removable media paritions on a production envir
 #### 2.17 Set Sticky Bit on All World-Writable Directories (Scored)
 
 Skipped: Evaluate your environment before adjusting permissions across the entire filesystem(s).
+
+
+### Section 3
+
+#### 3.3 Set Boot Loader Password (Scored)
+
+Skipped: Setting bootloader password can be destructive for systems in production
+
+#### 3.4 Require Authentication for Single-User Mode (Scored)
+
+Skipped: Manually set the password for root user
+
+
+### Section 4
+
+#### 4.2 Enable XD/NX Support on 32-bit x86 Systems (Not Scored)
+Skipped: On 32 bit systems install a kernel with PAE support, no installation is required on 64 bit systems
