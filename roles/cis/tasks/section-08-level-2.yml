@@ -1,11 +1,6 @@
 ---
 #file: tasks/section-08-level-2.yml
 
-- name: 8.1.1 Configure Data Retention
-  debug: msg="*** When auditing, it is important to carefully configure the storage requirements for audit logs"
-  tags:
-    - section8.1.1
-
 # NOTE: It makes logical sense to install auditd first, then configuring it!
 # And not vice-versa as is implied in the section ordering
 - name: 8.1.2 Install and Enable auditd Service (Scored)
@@ -19,6 +14,11 @@
   tags:
     - scored
     - section8.1.2
+
+- name: 8.1.1 Configure Data Retention
+  debug: msg="*** When auditing, it is important to carefully configure the storage requirements for audit logs"
+  tags:
+    - section8.1.1
 
 - name: 8.1.1.1 Configure Audit Log Storage Size (Not Scored)
   lineinfile: dest=/etc/audit/auditd.conf regexp="^max_log_file" line="max_log_file = 10" state=present
