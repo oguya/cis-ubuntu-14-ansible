@@ -59,4 +59,22 @@ Skipped: Manually set the password for root user
 ### Section 4
 
 #### 4.2 Enable XD/NX Support on 32-bit x86 Systems (Not Scored)
+
 Skipped: On 32 bit systems install a kernel with PAE support, no installation is required on 64 bit systems
+
+
+### Section 8
+
+#### 8.2.5 Configure rsyslog to Send Logs to a Remote Log Host (Scored)
+
+Skipped: Evaluate your infrastructure first, before sending logs to remote host
+
+#### 8.2.6 Accept Remote rsyslog Messages Only on Designated Log Hosts (Not Scored)
+
+Skipped: Evaluate your infrastructure first, before receiving logs from remote host(s)
+
+#### 8.4 Configure logrotate (Not Scored)
+
+Skipped: Review /etc/logrotate.d/rsyslog to determine if the appropriate system logs are rotated according to your site policy
+
+
