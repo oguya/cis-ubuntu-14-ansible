@@ -78,3 +78,7 @@ Skipped: Evaluate your infrastructure first, before receiving logs from remote h
 Skipped: Review /etc/logrotate.d/rsyslog to determine if the appropriate system logs are rotated according to your site policy
 
 
+### Section 10
+
+#### 10.5 Lock Inactive User Accounts (Scored)
+Skipped: Evaluate your infrastructure first, before locking inactive accounts
