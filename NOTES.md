@@ -105,22 +105,22 @@ Skipped: Evaluate your infrastructure before removing world writable files
 
 Skipped: You can run the following command to find files that are owned by users or groups not listed in the system configuration files, and reset the ownership of these files to some active user on the system
 
-        shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser - ls
+    shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser - ls
 
 #### 12.9 Find Un-grouped Files and Directories (Scored)
 
 Skipped: You can run the following command to find files that are owned by users or groups not listed in the system configuration files, and reset the ownership of these files to some active user on the system
 
-        shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser - ls
+    shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser - ls
 
 #### 12.10 Find SUID System Executables (Not Scored)
 
 Skipped: You can run the following command to find & ensure that no rogue set-UID programs have been introduced into the system
 
-        df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -print
+    df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -print
 
 #### 12.11 Find SGID System Executables (Not Scored)
 
 Skipped: Ensure that no rogue set-GID programs have been introduced into the system
 
-        df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -print
+    df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -print
