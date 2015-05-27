@@ -124,3 +124,50 @@ Skipped: You can run the following command to find & ensure that no rogue set-UI
 Skipped: Ensure that no rogue set-GID programs have been introduced into the system
 
     df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -print
+
+
+### Section 13
+
+#### 13.1 Ensure Password Fields are Not Empty (Scored)
+
+Skipped: Evaluate your infrastructure before locking passwordless accounts
+
+    /bin/cat /etc/shadow | /usr/bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}'
+
+#### 13.2 Verify No Legacy "+" Entries Exist in /etc/passwd File (Scored)
+
+Skipped: Delete entries in /etc/password provided by `grep '^+:' /etc/passwd`
+
+#### 13.3 Verify No Legacy "+" Entries Exist in /etc/shadow File (Scored)
+
+Skipped: Delete entries in /etc/shadow provided by `grep '^+:' /etc/shadow`
+
+#### 13.4 Verify No Legacy "+" Entries Exist in /etc/group File (Scored)
+
+Skipped: Delete entries in /etc/group provided by `grep '^+:' /etc/group`
+
+#### 13.7 Check Permissions on User Home Directories (Scored)
+
+Skipped: Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users.
+
+#### 13.8 Check User Dot File Permissions (Scored)
+
+Skipped: Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users.
+
+#### 13.9 Check Permissions on User .netrc Files (Scored)
+
+Skipped: Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users
+
+#### 13.10 Check for Presence of User .rhosts Files (Scored)
+
+Skipped: If any users have .rhosts files determine why they have them
+
+#### 13.19 Check for Presence of User .forward Files (Scored)
+
+Skipped: Making global modifications to users' files without alerting the user community can result in unexpected outages and unhappy users
+
+#### 13.20 Ensure shadow group is empty (Scored)
+
+Skipped: Remove all users from the shadow group, and change the primary group of any users with shadow as their primary group.
+
+    grep ^shadow /etc/group && awk -F: '($4 == "<shadow-gid>") { print }' /etc/passwd
