@@ -82,3 +82,14 @@ Skipped: Review /etc/logrotate.d/rsyslog to determine if the appropriate system 
 
 #### 10.5 Lock Inactive User Accounts (Scored)
 Skipped: Evaluate your infrastructure first, before locking inactive accounts
+
+
+### Section 11
+
+#### 11.2 Remove OS Information from Login Warning Banners (Scored)
+
+Skipped: Evaluate your infrastructure first, before locking inactive accounts
+
+#### 11.3 Set Graphical Warning Banner (Not Scored)
+
+Skipped: Set a banner for the display manager in use consistent with your organizations policy
