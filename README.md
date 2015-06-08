@@ -1,4 +1,5 @@
 ## Deploy CIS Benchmarks on Ubuntu 14.04 hosts using Ansible
+[![Build Status](https://travis-ci.org/oguya/cis-ubuntu-14-ansible.svg)](https://travis-ci.org/oguya/cis-ubuntu-14-ansible)
 
 This is an Ansible playbook for deploying [CIS Security Benchmarks](http://benchmarks.cisecurity.org/) to system(s) running Ubuntu 14.04.
 
