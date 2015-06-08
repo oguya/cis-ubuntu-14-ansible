@@ -1,0 +1,26 @@
+---
+language: python
+python: "2.7"
+
+# environment variables
+env:
+  - ANSIBLE_INVENTORY=hosts
+
+# update indices, install dependencies
+before_install:
+  - apt-get update -qq
+  - apt-get install -y python-dev python-pip gcc-4.8 libgcc-4.8-dev git
+
+# install ansible from pip
+install:
+  - pip install ansible
+
+# run tests
+script:
+  # run syntax checks
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
+
+  # run score tasks
+  - "ansible-playbook tests/test.yml -i tests/hosts --tags=scored"
+
+# vim: set sw=2 ts=2:
