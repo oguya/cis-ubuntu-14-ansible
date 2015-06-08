@@ -10,7 +10,7 @@ env:
 # update indices, install dependencies
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y python-dev python-pip gcc-4.8 libgcc-4.8-dev git
+  - sudo apt-get install -y python-dev python-pip gcc git
 
 # install ansible from pip
 install:
