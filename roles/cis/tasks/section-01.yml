@@ -3,6 +3,12 @@
 
 - name: 1.1 Install Updates, Patches and Additional Security Software (Not Scored)
   apt: upgrade=dist update_cache=yes
+  tags:
+    - notscored
+    - section1.1
+
+- name: Check if reboot is required
+  shell: if [[ $(readlink -f /vmlinuz) != /boot/vmlinuz-$(uname -r) ]]; then echo "reboot required"; else echo "no"; fi
   register: reboot_required
   tags:
     - notscored
@@ -10,14 +16,14 @@
 
 - name: Reboot host to apply updates
   command: /sbin/reboot now
-  when: reboot_required|changed
+  when: reboot_required is defined and reboot_required.stdout.find("required") != -1
   tags:
     - notscored
     - section1.1
 
 - name: Wait for the host to finish rebooting
   sudo: no
-  when: reboot_required|changed
+  when: reboot_required is defined and reboot_required.stdout.find("required") != -1
   local_action: wait_for host={{ inventory_hostname }} search_regex=OpenSSH port=22 timeout=90
   tags:
     - notscored
