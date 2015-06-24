@@ -1,5 +1,11 @@
 ---
 # file: defaults/main.yml
 
+# CIS 5.1.7 Ensure tftp-server is not enabled ??
+# Options:
+#   - yes: disable tftp-server
+#   - no: enable(DO NOT disable) tftp-server
+# Default: yes
+disable_tftp_server: "yes"
 
 # vim: set sw=2 ts=2:
