@@ -71,4 +71,29 @@ disable_samba_server: "no"
 # Default: yes
 disable_squid_server: "yes"
 
+# 7.3 Configure IPv6
+# This section disables IPv6 if it's not being used!
+# Options:
+#   - yes: disable IPv6
+#   - no: DO NOT disable IPv6
+# Default: no
+disable_ipv6: "no"
+
+# 7.5 Uncommon Network Protocols
+# This section recommends disabling unused protocols in the kernel
+# Options:
+#   - yes: disable protocols as recommended
+#   - no: DO NOT disable protocols as recommended
+# Default: yes
+disable_dccp: "yes"
+disable_sctp: "yes"
+disable_rds: "yes"
+disable_tipc: "yes"
+
+
+# 7.7 Ensure Firewall is active
+# Enable firewall(ufw) if you use ufw firewall, otherwise don't!
+# In most cases people use iptables-persistent on Debian based distro
+enable_ufw: "yes"
+
 # vim: set sw=2 ts=2:
