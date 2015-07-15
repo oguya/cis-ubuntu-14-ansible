@@ -8,4 +8,67 @@
 # Default: yes
 disable_tftp_server: "yes"
 
+# CIS 6.1 Ensure the X Window system is not installed
+# Options:
+#   - yes: remove/uninstall X window system
+#   - no: DO NOT remove/uninstall X window system
+# Default: yes
+remove_x_window: "yes"
+
+# 6.4 Ensure DHCP Server is not enabled
+# Options:
+#   - yes: disable DHCP Server
+#   - no: enable(DO NOT disable) DHCP Server
+# Default: yes
+disable_dhcp_server: "yes"
+
+# 6.6 Ensure LDAP is not enabled
+# Options
+#   - yes: disable & uninstall LDAP
+#   - no: do not disable/uninstall LDAP
+# Default: yes
+disable_ldap_server: "yes"
+
+# 6.8 Ensure DNS Server is not enabled
+# Options:
+#   - yes: disable DNS server
+#   - no: DO NOT disable DNS server
+# Default: yes
+disable_dns_server: "yes"
+
+# 6.9 Ensure FTP Server is not enabled
+# Options:
+#   - yes: disable FTP server
+#   - no: DO NOT disable FTP server
+# Default: yes
+disable_ftp_server: "yes"
+
+# 6.10 Ensure HTTP Server is not enabled
+# Options:
+#   - yes: disable HTTP server
+#   - no: DO NOT disable HTTP server
+# Default: no
+disable_http_server: "no"
+
+# 6.11 Ensure IMAP & POP Server is not enabled
+# Options:
+#   - yes: disable IMAP & POP server
+#   - no: DO NOT disable IMAP & POP server
+# Default: yes
+disable_dovecot_server: "yes"
+
+# 6.12 Ensure Samba is not enabled
+# Options:
+#   - yes: disable Samba
+#   - no: DO NOT disable Samba
+# Default: no
+disable_samba_server: "no"
+
+# 6.13 Ensure HTTP Proxy Server is not enabled
+# Options:
+#   - yes: disable HTTP Proxy server
+#   - no: DO NOT disable HTTP Proxy server
+# Default: yes
+disable_squid_server: "yes"
+
 # vim: set sw=2 ts=2:

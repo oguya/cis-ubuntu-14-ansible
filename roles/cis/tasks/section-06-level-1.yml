@@ -3,6 +3,7 @@
 
 - name: 6.1 Ensure the X Window system is not installed (Scored)
   apt: name="xserver-xorg-core*" purge=yes state=absent
+  when: remove_x_window == "yes"
   tags:
     - scored
     - section6.1
@@ -44,7 +45,7 @@
 
 - name: 6.4 Ensure DHCP Server is not enabled (Scored)
   service: name=isc-dhcp-server state=stopped enabled=no
-  when: dhcp_init_path is defined and dhcp_init_path.stat.exists
+  when: dhcp_init_path is defined and dhcp_init_path.stat.exists and disable_dhcp_server == "yes"
   tags:
     - scored
     - section6.4
@@ -86,6 +87,7 @@
 
 - name: 6.6 Ensure LDAP is not enabled (Not Scored)
   apt: name=slapd purge=yes state=absent
+  when: disable_ldap_server == "yes"
   tags:
     - notscored
     - section6.6
@@ -113,7 +115,7 @@
 
 - name: 6.8 Ensure DNS Server is not enabled (Not Scored)
   service: name=bind state=stopped enabled=no
-  when: bind9_init_path is defined and bind9_init_path.stat.exists
+  when: bind9_init_path is defined and bind9_init_path.stat.exists and disable_dns_server == "yes"
   tags:
     - notscored
     - section6.8
@@ -127,7 +129,7 @@
 
 - name: 6.9 Ensure FTP Server is not enabled (Not Scored)
   service: name=vsftpd state=stopped enabled=no
-  when: vsftpd_init_path is defined and vsftpd_init_path.stat.exists
+  when: vsftpd_init_path is defined and vsftpd_init_path.stat.exists and disable_ftp_server == "yes"
   tags:
     - notscored
     - section6.9
@@ -141,7 +143,7 @@
 
 - name: 6.10 Ensure HTTP Server is not enabled (Not Scored)
   service: name=apache2 state=stopped enabled=no
-  when: apache2_init_path is defined and apache2_init_path.stat.exists
+  when: apache2_init_path is defined and apache2_init_path.stat.exists and disable_http_server == "no"
   tags:
     - notscored
     - section6.10
@@ -155,7 +157,7 @@
 
 - name: 6.11 Ensure IMAP and POP server is not enabled (Not Scored)
   service: name=dovecot state=stopped enabled=no
-  when: dovecot_init_path is defined and dovecot_init_path.stat.exists
+  when: dovecot_init_path is defined and dovecot_init_path.stat.exists and disable_dovecot_server == "yes"
   tags:
     - notscored
     - section6.11
@@ -169,7 +171,7 @@
 
 - name: 6.12 Ensure Samba is not enabled (Not Scored)
   service: name=smbd state=stopped enabled=no
-  when: smbd_init_path is defined and smbd_init_path.stat.exists
+  when: smbd_init_path is defined and smbd_init_path.stat.exists and disable_samba_server == "no"
   tags:
     - notscored
     - section6.12
@@ -183,7 +185,7 @@
 
 - name: 6.13 Ensure HTTP Proxy Server is not enabled (Not Scored)
   service: name=squid3 state=stopped enabled=no
-  when: squid3_init_path is defined and squid3_init_path.stat.exists
+  when: squid3_init_path is defined and squid3_init_path.stat.exists and disable_squid_server == "yes"
   tags:
     - notscored
     - section6.13
