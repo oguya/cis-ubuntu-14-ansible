@@ -90,10 +90,34 @@ disable_sctp: "yes"
 disable_rds: "yes"
 disable_tipc: "yes"
 
-
 # 7.7 Ensure Firewall is active
 # Enable firewall(ufw) if you use ufw firewall, otherwise don't!
 # In most cases people use iptables-persistent on Debian based distro
 enable_ufw: "yes"
+
+# 10.1.1 Set Password Expiration Days
+# Maximum number of days a password may be used
+# Default: 90
+pass_max_days: 90
+
+# 10.1.2 Set Password Change Minimum Number of Days
+# Minimum number of days allowed between password changes.
+# Default: 7
+pass_min_days: 7
+
+# 10.1.3 Set Password Expiring Warning Days
+# Number of days warning given before a password expires
+# Default: 7
+pass_warn_age: 7
+
+# 10.2 Disable System Accounts
+# Sets system accounts' shell to /usr/sbin/nologin. Therefore, to use
+# a system account you have to a shell option(-s) in su command
+# Only root, shutdown, halt & sync system accounts will not be affected!
+# Options:
+#   - yes: disable system accounts
+#   - no: DO NOT disable system accounts
+# Default: no
+disable_system_accounts: "no"
 
 # vim: set sw=2 ts=2:
