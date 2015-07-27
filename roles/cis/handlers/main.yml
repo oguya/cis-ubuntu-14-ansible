@@ -20,7 +20,7 @@
   command: service rsyslog restart
 
 - name: initialize aide
-  shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db && /usr/sbin/prelink -ua
+  shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 
 - name: restart ssh
   command: service ssh restart
