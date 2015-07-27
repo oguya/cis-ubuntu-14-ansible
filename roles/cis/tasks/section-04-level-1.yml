@@ -25,6 +25,12 @@
     - scored
     - section4.3
 
+- name: pre-4.4 Restore binaries to a normal, non-prelinked state (Scored)
+  command: /usr/sbin/prelink -ua
+  tags:
+    - scored
+    - section4.4
+
 - name: 4.4 Disable Prelink (Scored)
   apt: name=prelink purge=yes state=absent
   tags:
