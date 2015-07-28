@@ -40,10 +40,6 @@ Existing mounts are remounted with the recommended benchmark options.
 
 Skipped: Presumed you won't have removable media paritions on a production environment.
 
-#### 2.17 Set Sticky Bit on All World-Writable Directories (Scored)
-
-Skipped: Evaluate your environment before adjusting permissions across the entire filesystem(s).
-
 
 ### Section 3
 

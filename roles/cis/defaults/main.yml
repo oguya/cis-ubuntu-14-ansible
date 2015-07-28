@@ -120,4 +120,10 @@ pass_warn_age: 7
 # Default: no
 disable_system_accounts: "no"
 
+# 12.10 Find SUID System Executables (Not Scored)
+allowed_suid_binaries: []
+
+# 12.11 Find SGID System Executables (Not Scored)
+allowed_sgid_binaries: []
+
 # vim: set sw=2 ts=2:
