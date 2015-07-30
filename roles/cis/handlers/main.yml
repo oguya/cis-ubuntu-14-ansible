@@ -2,7 +2,7 @@
 # file: handlers/main.yml
 
 - name: restart postfix
-  service: name=postfix state=restated enabled=yes
+  service: name=postfix state=restarted enabled=yes
 
 - name: flush routing cache
   shell: echo 1 > /proc/sys/net/ipv4/route/flush
