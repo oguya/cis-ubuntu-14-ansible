@@ -2,32 +2,40 @@
 # file: tasks/section-13-level-1.yml
 
 - name: 13.1 Ensure Password Fields are Not Empty (Scored)
-#  shell: /bin/cat /etc/shadow | /usr/bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}'
-  debug: msg="*** Evaluate your infrastructure before locking passwordless accounts"
+  shell: /bin/cat /etc/shadow | /usr/bin/awk -F':' '($2 == "" ) { print $1 " does not have a password "}'
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.1
+    - manual_remediation
 
 - name: 13.2 Verify No Legacy "+" Entries Exist in /etc/passwd File (Scored)
-#  shell: /bin/grep '^+:' /etc/passwd
-  debug: msg="*** Delete entries in /etc/password provided by `grep '^+:' /etc/passwd`"
+  shell: /bin/grep '^+:' /etc/passwd
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.2
+    - manual_remediation
 
 - name: 13.3 Verify No Legacy "+" Entries Exist in /etc/shadow File (Scored)
-#  shell: /bin/grep '^+:' /etc/shadow
-  debug: msg="*** Delete entries in /etc/shadow provided by `grep '^+:' /etc/shadow`"
+  shell: /bin/grep '^+:' /etc/shadow
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.3
+    - manual_remediation
 
 - name: 13.4 Verify No Legacy "+" Entries Exist in /etc/group File (Scored)
-#  shell: /bin/grep '^+:' /etc/group
-  debug: msg="*** Delete entries in /etc/group provided by `grep '^+:' /etc/group`"
+  shell: /bin/grep '^+:' /etc/group
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.4
+    - manual_remediation
 
 - name: 13.5 Verify No UID 0 Accounts Exist Other Than root (Scored)
   shell: /bin/cat /etc/passwd | /usr/bin/awk -F':' '($3 == 0) { print $1 }'
@@ -56,28 +64,39 @@
     - section13.6
 
 - name: 13.7 Check Permissions on User Home Directories (Scored)
-  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  shell: bash /root/check_home_dirs_permissions.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.7
+    - manual_remediation
 
 - name: 13.8 Check User Dot File Permissions (Scored)
-  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  shell: bash /root/check_user_dot_files_permissions.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.8
+    - manual_remediation
 
 - name: 13.9 Check Permissions on User .netrc Files (Scored)
-  debug: msg="*** Making global modifications to user home directories without alerting the user community can result in unexpected outages and unhappy users."
+  shell: bash /root/check_user_netrc_permissions.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.8
 
 - name: 13.10 Check for Presence of User .rhosts Files (Scored)
-  debug: msg="*** If any users have .rhosts files determine why they have them"
+  shell: bash /root/check_user_rhosts.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - sectin13.10
+    - manual_remediation
 
 - name: 13.11 Check Groups in /etc/passwd (Scored)
   copy: src=check_groups.sh dest=/root/check_groups.sh owner=root group=root mode=0750
@@ -220,22 +239,30 @@
     - section13.17
 
 - name: 13.18 Check for Presence of User .netrc Files (Scored)
-  debug: msg="*** Making global modifications to users' files without alerting the user community can result in unexpected outages and unhappy users"
+  shell: bash /root/check_user_netrc.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.18
+    - manual_remediation
 
 - name: 13.19 Check for Presence of User .forward Files (Scored)
-  debug: msg="*** Making global modifications to users' files without alerting the user community can result in unexpected outages and unhappy users"
+  shell: bash /root/check_user_forward.sh
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.19
+    - manual_remediation
 
 - name: 13.20 Ensure shadow group is empty (Scored)
-# shell: grep ^shadow /etc/group && awk -F: '($4 == "<shadow-gid>") { print }' /etc/passwd
-  debug: msg="*** Remove all users from the shadow group, and change the primary group of any users with shadow as their primary group."
+  shell: grep ^shadow /etc/group && awk -F':' '($4 == "<shadow-gid>") { print }' /etc/passwd
+  register: command_result
+  failed_when: 'command_result.stdout != ""'
   tags:
     - scored
     - section13.20
+    - manual_remediation
 
 # vim: set sw=2 ts=2:

@@ -74,7 +74,7 @@
     - section2.16
 
 - name: 2.17 Set Sticky Bit on All World-Writable Directories (Scored)
-  debug: msg="*** Can be destructive -- see notes"
+  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
   tags:
     - scored
     - section2.17
