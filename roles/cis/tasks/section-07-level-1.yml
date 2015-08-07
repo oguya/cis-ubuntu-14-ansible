@@ -116,7 +116,7 @@
 
 - name: 7.3.1 Disable IPv6 Router Advertisements (Not Scored)
   sysctl: name="{{item}}" value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
-  when: disable_ipv6 == "no"
+  when: disable_ipv6 == "yes"
   with_items:
     - net.ipv6.conf.all.accept_ra
     - net.ipv6.conf.default.accept_ra
@@ -128,7 +128,7 @@
 
 - name: 7.3.2 Disable IPv6 Redirect Acceptance (Not Scored)
   sysctl: name="{{item}}" value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
-  when: disable_ipv6 == "no"
+  when: disable_ipv6 == "yes"
   with_items:
     - net.ipv6.conf.all.accept_redirects
     - net.ipv6.conf.default.accept_redirects
