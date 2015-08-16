@@ -59,8 +59,6 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
         ---
         ansible_ssh_host: 172.26.23.225
 
-- if you want to run section 12, you will probably want to override the default variables allowed_suid_binaries and allowed_sgid_binaries with a whilelist of binary paths that should be allowed.
-
 - dry run the playbook:
 
         ansible-playbook cis.yml -K --check
@@ -92,6 +90,8 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 - run **_not scored_**(i.e. ignore **_scored_**) benchmarks listed in Level 2
 
         ansible-playbook cis.yml -K --tags=level-2 --skip-tags=scored
+
+- if you want to run Section 12, you will probably want to override the default variables `allowed_suid_binaries` and `allowed_sgid_binaries` with a whitelist of binary paths that should be allowed.
 
 
 ### Assumptions
