@@ -15,8 +15,8 @@ before_install:
 
 # install ansible from pip
 install:
-  - pip install --upgradable pip
-  - pip install --upgradable ansible
+  - pip install --upgrade pip
+  - pip install --upgrade ansible
 
 # run tests
 script:
