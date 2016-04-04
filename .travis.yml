@@ -2,19 +2,21 @@
 language: python
 python: "2.7"
 sudo: required
+dist: trusty
 
 # environment variables
 env:
   - ANSIBLE_INVENTORY=hosts
 
-# update indices, install dependencies
+# update apt indices, install dependencies
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y python-dev python-pip gcc git
 
 # install ansible from pip
 install:
-  - pip install ansible
+  - pip install --upgradable pip
+  - pip install --upgradable ansible
 
 # run tests
 script:
@@ -22,6 +24,6 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
   # run score tasks
-  - "ansible-playbook tests/test.yml -i tests/hosts --tags=scored"
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
 
 # vim: set sw=2 ts=2:
