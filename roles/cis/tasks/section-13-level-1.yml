@@ -242,6 +242,7 @@
   shell: bash /root/check_user_netrc.sh
   register: command_result
   failed_when: 'command_result.stdout != ""'
+  ignore_errors: yes
   tags:
     - scored
     - section13.18
@@ -251,6 +252,7 @@
   shell: bash /root/check_user_forward.sh
   register: command_result
   failed_when: 'command_result.stdout != ""'
+  ignore_errors: yes
   tags:
     - scored
     - section13.19
@@ -260,6 +262,7 @@
   shell: grep ^shadow /etc/group && awk -F':' '($4 == "<shadow-gid>") { print }' /etc/passwd
   register: command_result
   failed_when: 'command_result.stdout != ""'
+  ignore_errors: yes
   tags:
     - scored
     - section13.20
