@@ -11,7 +11,7 @@
     - section11.1
 
 - name: 11.2 Remove OS Information from Login Warning Banners (Scored)
-  debug: msg="*** Edit the /etc/motd , /etc/issue and /etc/issue.net files and remove any lines containing \m , \r , \s or \v"
+  debug: msg="*** Edit the /etc/motd, /etc/issue and /etc/issue.net files and remove any lines containing \m, \r, \s or \v"
   tags:
     - scored
     - section11.1
