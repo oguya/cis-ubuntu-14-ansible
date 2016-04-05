@@ -25,8 +25,16 @@
     - scored
     - section4.3
 
+- name: pre-4.4 Check if prelink binary exists
+  stat: path=/usr/sbin/prelink follow=True
+  register: prelink_bin_path
+  tags:
+    - scored
+    - section4.4
+
 - name: pre-4.4 Restore binaries to a normal, non-prelinked state (Scored)
   command: /usr/sbin/prelink -ua
+  when: prelink_bin_path is defined and prelink_bin_path.stat.exists
   tags:
     - scored
     - section4.4
