@@ -22,7 +22,7 @@
     - section1.1
 
 - name: Wait for the host to finish rebooting
-  sudo: no
+  become: no
   when: reboot_required is defined and reboot_required.stdout.find("required") != -1
   local_action: wait_for host={{ inventory_hostname }} search_regex=OpenSSH port=22 timeout=90
   tags:

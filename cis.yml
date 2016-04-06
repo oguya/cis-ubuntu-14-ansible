@@ -2,7 +2,7 @@
 # file: cis.yml
 
 - hosts: all
-  sudo: yes
+  become: yes
   user: provisioner
   roles:
     - { role: cis, when: ansible_distribution=="Ubuntu" and ansible_distribution_version=="14.04" }

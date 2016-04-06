@@ -1,6 +1,6 @@
 ---
 - hosts: ubuntu
-  sudo: yes
+  become: yes
   connection: local
   remote_user: root
   roles:
