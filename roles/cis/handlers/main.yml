@@ -20,7 +20,7 @@
   service: name=rsyslog state=restarted
 
 - name: initialize aide
-  shell: aideinit && cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+  shell: aideinit -y && cp -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 
 - name: restart ssh
   service: name=ssh state=restarted
