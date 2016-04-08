@@ -24,6 +24,7 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
   # run score tasks (break up by section)
-  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"scored,section-01.yml\""
+#  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
 
 # vim: set sw=2 ts=2:
