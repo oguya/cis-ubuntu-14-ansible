@@ -23,7 +23,7 @@ script:
   # run syntax checks
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
-  # run score tasks
-  - "travis_wait 20 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
+  # run score tasks (break up by section)
+  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
 
 # vim: set sw=2 ts=2:
