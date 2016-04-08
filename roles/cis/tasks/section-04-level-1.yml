@@ -50,6 +50,7 @@
   with_items:
     - apparmor
     - apparmor-utils
+    - apparmor-profiles
   notify: enforce apparmor profiles
   tags:
     - scored
