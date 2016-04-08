@@ -24,6 +24,7 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
   # run score tasks
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
+  # NOTE: Ignore Section 13.20, 8.3.1 & 4.5 due to timeouts on Travis-CI build env.
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored --skip-tags=section4.5,section13.20,section8.3.1"
 
 # vim: set sw=2 ts=2:
