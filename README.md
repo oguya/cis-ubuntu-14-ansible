@@ -46,8 +46,8 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 
 - clone this repo:
 
-        git clone https://github.com/oguya/cis-ubuntu-14-ansible.git
-        cd cis-ubuntu-14-ansible
+        $ git clone https://github.com/oguya/cis-ubuntu-14-ansible.git
+        $ cd cis-ubuntu-14-ansible
 
 - add your target host in the [inventory](http://docs.ansible.com/intro_inventory.html) `hosts` file, for example: `ubuntu01` host as the target host belonging to the `ubuntu` group:
 
@@ -61,35 +61,35 @@ Before, deploying CIS Security Benchmarks & recommendations to your server(s), p
 
 - dry run the playbook:
 
-        ansible-playbook cis.yml --ask-become-pass --check
+        $ ansible-playbook cis.yml --ask-become-pass --check
 
 - dry run a particular section, e.g. section 8.1.8
 
-        ansible-playbook cis.yml --ask-become-pass --tags=section8.1.8 --check
+        $ ansible-playbook cis.yml --ask-become-pass --tags=section8.1.8 --check
 
 - run benchmarks listed in Level 1
 
-        ansible-playbook cis.yml --ask-become-pass --tags=level-1
+        $ ansible-playbook cis.yml --ask-become-pass --tags=level-1
 
 - run benchmarks listed in Level 2
 
-        ansible-playbook cis.yml --ask-become-pass --tags=level-2
+        $ ansible-playbook cis.yml --ask-become-pass --tags=level-2
 
 - run all **_scored_** benchmarks
 
-        ansible-playbook cis.yml --ask-become-pass --tags=scored
+        $ ansible-playbook cis.yml --ask-become-pass --tags=scored
 
 - run all **_not scored_** benchmarks
 
-        ansible-playbook cis.yml --ask-become-pass --tags=notscored
+        $ ansible-playbook cis.yml --ask-become-pass --tags=notscored
 
 - run **_scored_**(i.e. ignore **_not scored_**) benchmarks listed in Level 1
 
-        ansible-playbook cis.yml --ask-become-pass --tags=level-1 --skip-tags=notscored
+        $ ansible-playbook cis.yml --ask-become-pass --tags=level-1 --skip-tags=notscored
 
 - run **_not scored_**(i.e. ignore **_scored_**) benchmarks listed in Level 2
 
-        ansible-playbook cis.yml --ask-become-pass --tags=level-2 --skip-tags=scored
+        $ ansible-playbook cis.yml --ask-become-pass --tags=level-2 --skip-tags=scored
 
 - if you want to run Section 12, you will probably want to override the default variables `allowed_suid_binaries` and `allowed_sgid_binaries` with a whitelist of binary paths that should be allowed.
 
