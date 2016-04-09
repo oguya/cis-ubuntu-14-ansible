@@ -261,7 +261,7 @@
 - name: 13.20 Ensure shadow group is empty (Scored)
   shell: grep ^shadow /etc/group && awk -F':' '($4 == "<shadow-gid>") { print }' /etc/passwd
   register: command_result
-  failed_when: 'command_result.stdout != ""'
+#  failed_when: 'command_result.stdout != ""'
   ignore_errors: yes
   tags:
     - scored

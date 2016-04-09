@@ -24,8 +24,34 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
   # run score tasks (break up by section)
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-01\" --skip-tags \"notscored\""
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-01\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-2\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section3-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section4-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section7-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section8-level-2\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section9-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section10-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section11-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section12-level-1\" --skip-tags \"notscored\""
+#  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section13-level-1\" --skip-tags \"notscored\""
+
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-01\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-2\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section3-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section4-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section7-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section8-level-2\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section9-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section10-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section11-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section12-level-1\" "
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section13-level-1\" "
+
+
+
 #  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
 
 # vim: set sw=2 ts=2:
