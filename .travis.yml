@@ -24,8 +24,8 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --syntax-check"
 
   # run score tasks (break up by section)
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-01\" --skiptags \"notscored\""
-  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-1\" --skiptags \"notscored\""
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-01\" --skip-tags \"notscored\""
+  - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section2-level-1\" --skip-tags \"notscored\""
 #  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags=scored"
 
 # vim: set sw=2 ts=2:
