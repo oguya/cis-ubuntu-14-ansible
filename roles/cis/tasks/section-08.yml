@@ -3,7 +3,6 @@
 # Section 8: Logging and Auditing
 
 - include: section-08-level-2.yml
-  when: level2_hardening == "yes"
   tags:
     - level-2
     - section-08-level-2
