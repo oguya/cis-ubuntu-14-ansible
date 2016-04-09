@@ -1,13 +1,6 @@
 ---
 # file: defaults/main.yml
 
-# Sets level of desired hardening to Level 1 only or Level 2
-# Options:
-#   - yes: hardens to CIS level 2
-#   - no: hardens to CIS level 1
-# Default: Yes
-level2_hardening: "yes"
-
 # CIS 5.1.7 Ensure tftp-server is not enabled ??
 # Options:
 #   - yes: disable tftp-server
