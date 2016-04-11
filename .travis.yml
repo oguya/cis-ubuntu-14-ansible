@@ -46,7 +46,7 @@ script:
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-05\" --skip-tags \"notscored\""
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-06\" --skip-tags \"notscored\""
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-07\" --skip-tags \"notscored\""
-  - travis_wait 30 "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-08\" --skip-tags \"notscored\""
+  - "travis_wait 30 ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-08\" --skip-tags \"notscored\""
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-09\" --skip-tags \"notscored\""
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-10\" --skip-tags \"notscored\""
   - "ansible-playbook tests/test.yml -i tests/hosts --connection=local --tags \"section-11\" --skip-tags \"notscored\""
