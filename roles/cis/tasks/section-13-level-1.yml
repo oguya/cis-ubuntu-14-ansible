@@ -87,7 +87,7 @@
   failed_when: 'command_result.stdout != ""'
   tags:
     - scored
-    - section13.8
+    - section13.9
 
 - name: 13.10 Check for Presence of User .rhosts Files (Scored)
   shell: bash /root/check_user_rhosts.sh
@@ -95,7 +95,7 @@
   failed_when: 'command_result.stdout != ""'
   tags:
     - scored
-    - sectin13.10
+    - section13.10
     - manual_remediation
 
 - name: 13.11 Check Groups in /etc/passwd (Scored)
