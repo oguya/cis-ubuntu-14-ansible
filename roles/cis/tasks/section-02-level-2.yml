@@ -9,6 +9,7 @@
   stat: path=/etc/modprobe.d/CIS.conf follow=True
   register: modprobe_cis_path
   tags:
+    - section2.18
     - section2.19
     - section2.20
     - section2.21
@@ -21,6 +22,7 @@
   file: path=/etc/modprobe.d/CIS.conf state=touch owner=root group=root mode=0644
   when: not modprobe_cis_path.stat.exists
   tags:
+    - section2.18
     - section2.19
     - section2.20
     - section2.21
@@ -33,6 +35,7 @@
   stat: path=/etc/modprobe.d/CIS.conf follow=True
   register: modprobe_cis_path
   tags:
+    - section2.18
     - section2.19
     - section2.20
     - section2.21
@@ -41,8 +44,15 @@
     - section2.24
     - section2.25
 
-- name: 2.19 Disable Mounting of freevxfs Filesystems (Not Scored)
+- name: 2.18 Disable Mounting of cramfs Filesystems (Not Scored)
   lineinfile: dest=/etc/modprobe.d/CIS.conf line="install cramfs /bin/true" state=present
+  when: modprobe_cis_path is defined and modprobe_cis_path.stat.exists
+  tags:
+    - notscored
+    - section2.18
+
+- name: 2.19 Disable Mounting of freevxfs Filesystems (Not Scored)
+  lineinfile: dest=/etc/modprobe.d/CIS.conf line="install freevxfs /bin/true" state=present
   when: modprobe_cis_path is defined and modprobe_cis_path.stat.exists
   tags:
     - notscored
@@ -99,3 +109,4 @@
     - section2.25
 
 # vim: set sw=2 ts=2:
+
