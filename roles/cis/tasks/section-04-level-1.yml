@@ -20,7 +20,7 @@
     - section4.2
 
 - name: 4.3 Enable Randomized Virtual Memory Region Placement (Scored)
-  sysctl: name=kernel.randomize_va_space value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  sysctl: name=kernel.randomize_va_space value=2 ignoreerrors=yes sysctl_set=yes reload=yes state=present
   tags:
     - scored
     - section4.3
